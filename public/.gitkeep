@@ -1,0 +1,4 @@
+# This ensures the public directory is tracked by git
+# Add your images to:
+# - /public/art/ for art gallery images
+# - /public/designs/ for design showcase images

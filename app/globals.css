@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-serif: 'Crimson Pro', 'Georgia', serif;
+    --font-grotesk: 'Inter', 'Helvetica Neue', sans-serif;
+    --font-distorted: 'Bebas Neue', 'Impact', sans-serif;
+  }
+
+  * {
+    @apply antialiased;
+  }
+
+  html {
+    @apply scroll-smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-ink text-bone overflow-x-hidden;
+    font-family: var(--font-grotesk);
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-accent text-bone;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-charcoal;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-accent-muted;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent;
+  }
+}
+
+@layer components {
+  /* Glassmorphism utility */
+  .glass {
+    @apply backdrop-blur-md bg-charcoal/20 border border-bone/5;
+  }
+
+  .glass-heavy {
+    @apply backdrop-blur-xl bg-charcoal/40 border border-bone/10;
+  }
+
+  /* Grain texture overlay */
+  .grain {
+    position: relative;
+  }
+
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    animation: grain 8s steps(10) infinite;
+    mix-blend-mode: overlay;
+  }
+
+  /* Typography utilities */
+  .text-display {
+    @apply font-serif text-display-xl tracking-tight leading-none;
+  }
+
+  .text-title {
+    @apply font-grotesk text-title tracking-tight;
+  }
+
+  .text-distorted {
+    @apply font-distorted uppercase tracking-wider;
+  }
+
+  /* Asymmetric section spacing */
+  .section-spacing {
+    @apply py-24 md:py-32 lg:py-48;
+  }
+
+  .section-spacing-sm {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  /* Misaligned grid helper */
+  .offset-grid {
+    @apply grid gap-8 md:gap-12 lg:gap-16;
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+@layer utilities {
+  /* Slow breathing animation */
+  .animate-breathe {
+    animation: breathe 12s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% {
+      opacity: 0.4;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.02);
+    }
+  }
+
+  /* Vertical drift */
+  .animate-float {
+    animation: float 20s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) translateX(0);
+    }
+    25% {
+      transform: translateY(-10px) translateX(5px);
+    }
+    50% {
+      transform: translateY(-20px) translateX(-5px);
+    }
+    75% {
+      transform: translateY(-10px) translateX(5px);
+    }
+  }
+
+  /* Glitch effect (subtle) */
+  .glitch {
+    position: relative;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+
+  .glitch:hover::before {
+    animation: glitch-1 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    color: #ff0000;
+    z-index: -1;
+  }
+
+  .glitch:hover::after {
+    animation: glitch-2 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    color: #00fff9;
+    z-index: -1;
+  }
+
+  @keyframes glitch-1 {
+    0% {
+      transform: translate(0);
+      opacity: 0;
+    }
+    20% {
+      transform: translate(-2px, 2px);
+      opacity: 0.4;
+    }
+    40% {
+      transform: translate(-2px, -2px);
+      opacity: 0;
+    }
+    60% {
+      transform: translate(2px, 2px);
+      opacity: 0.4;
+    }
+    80% {
+      transform: translate(2px, -2px);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(0);
+      opacity: 0;
+    }
+  }
+
+  @keyframes glitch-2 {
+    0% {
+      transform: translate(0);
+      opacity: 0;
+    }
+    20% {
+      transform: translate(2px, -2px);
+      opacity: 0.4;
+    }
+    40% {
+      transform: translate(2px, 2px);
+      opacity: 0;
+    }
+    60% {
+      transform: translate(-2px, -2px);
+      opacity: 0.4;
+    }
+    80% {
+      transform: translate(-2px, 2px);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(0);
+      opacity: 0;
+    }
+  }
+}
