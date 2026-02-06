@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 
 const artworks = [
@@ -47,11 +47,20 @@ const artworks = [
     alt: 'Communication breakdown',
     year: '2024',
   },
+  {
+    id: 7,
+    title: 'Lifeless Edge',
+    src: '/art/Lifeless-Edge.jpg',
+    alt: 'Fragmented perimeter study',
+    year: '2026',
+  },
 ]
 
 function ArtworkCard({ artwork, index }: { artwork: typeof artworks[0]; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
+  const [isInView, setIsInView] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   const { scrollYProgress } = useScroll({
     target: cardRef,
@@ -66,15 +75,43 @@ function ArtworkCard({ artwork, index }: { artwork: typeof artworks[0]; index: n
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8])
 
-  // Staggered positions - create alienated, floating layout
+  // Staggered positions - responsive and aspect-friendly
   const positions = [
-    'col-span-5 row-span-2 mt-0',
-    'col-span-4 row-span-1 mt-32',
-    'col-span-3 row-span-2 -mt-16',
-    'col-span-6 row-span-1 mt-48',
-    'col-span-4 row-span-2 -mt-24',
-    'col-span-5 row-span-1 mt-16',
+    'col-span-12 md:col-span-4 row-span-2 mt-0',
+    'col-span-12 md:col-span-4 row-span-1 md:mt-24',
+    'col-span-12 md:col-span-4 row-span-2 md:-mt-12',
+    'col-span-12 md:col-span-4 row-span-1 md:mt-12',
+    'col-span-12 md:col-span-4 row-span-2 md:-mt-16',
+    'col-span-12 md:col-span-4 row-span-1 md:mt-6',
+    'col-span-12 md:col-span-4 row-span-2 md:mt-10',
   ]
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 768px)')
+    const update = () => setIsMobile(media.matches)
+    update()
+    media.addEventListener('change', update)
+    return () => media.removeEventListener('change', update)
+  }, [])
+
+  useEffect(() => {
+    if (!cardRef.current || !isMobile) {
+      setIsInView(false)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting)
+      },
+      { threshold: 0.45 }
+    )
+
+    observer.observe(cardRef.current)
+    return () => observer.disconnect()
+  }, [isMobile])
+
+  const isActive = isMobile ? isInView : isHovered
 
   return (
     <motion.div
@@ -85,35 +122,20 @@ function ArtworkCard({ artwork, index }: { artwork: typeof artworks[0]; index: n
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Image container */}
-      <div className="relative w-full aspect-[4/5] overflow-hidden glass-heavy">
-        {/* Placeholder for actual images */}
-        <div className="absolute inset-0 bg-gradient-to-br from-charcoal via-ink to-charcoal flex items-center justify-center">
-          <span className="font-distorted text-6xl text-bone/10">{artwork.id}</span>
-        </div>
+      <div className="relative overflow-hidden glass-heavy w-full">
 
         {/* Uncomment when you add actual images to /public/art/ */}
-        {/* <Image
+        <img
           src={artwork.src}
           alt={artwork.alt}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        /> */}
-
-        {/* Overlay */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isHovered ? 1 : 0 }}
-          transition={{ duration: 0.4 }}
-          className="absolute inset-0 bg-accent/20 backdrop-blur-sm flex items-center justify-center"
-        >
-          <div className="text-center space-y-2 px-6">
-            <h3 className="font-serif text-2xl md:text-3xl text-bone tracking-tight">
-              {artwork.title}
-            </h3>
-            <p className="font-grotesk text-sm text-bone/60">{artwork.year}</p>
-          </div>
-        </motion.div>
+          className={`w-full h-auto transition-all duration-700 ${
+            isActive
+              ? 'scale-105 grayscale-0 brightness-100'
+              : 'scale-100 grayscale brightness-75 contrast-110'
+          }`}
+          loading="lazy"
+          decoding="async"
+        />
 
         {/* Corner markers */}
         <div className="absolute top-2 left-2 w-4 h-4 border-l border-t border-bone/20 opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
@@ -134,6 +156,7 @@ function ArtworkCard({ artwork, index }: { artwork: typeof artworks[0]; index: n
         <h4 className="font-serif text-lg text-bone/80 tracking-tight">
           {artwork.title}
         </h4>
+        <p className="font-grotesk text-xs text-bone/50">{artwork.year}</p>
       </motion.div>
 
       {/* Subtle connection line */}
@@ -164,18 +187,6 @@ export default function ArtGallery() {
       ref={sectionRef}
       className="section-spacing px-6 md:px-12 lg:px-24 relative grain overflow-hidden"
     >
-      {/* Background layered elements */}
-      <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <motion.div
-          style={{ y: useTransform(scrollYProgress, [0, 1], [0, 200]) }}
-          className="absolute top-1/4 left-1/4 w-64 h-64 bg-accent rounded-full blur-3xl"
-        />
-        <motion.div
-          style={{ y: useTransform(scrollYProgress, [0, 1], [0, -200]) }}
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-bone rounded-full blur-3xl"
-        />
-      </div>
-
       <div className="relative z-10">
         {/* Section title */}
         <motion.div
