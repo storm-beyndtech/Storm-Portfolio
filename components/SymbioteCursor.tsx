@@ -6,6 +6,9 @@ import { motion, useMotionValue, useSpring } from 'framer-motion'
 interface Point {
   x: number
   y: number
+  phase: number
+  drift: number
+  bias: number
 }
 
 export default function SymbioteCursor() {
@@ -29,6 +32,9 @@ export default function SymbioteCursor() {
         points.push({
           x: Math.random() * window.innerWidth,
           y: Math.random() * window.innerHeight,
+          phase: Math.random() * Math.PI * 2,
+          drift: 20 + Math.random() * 35,
+          bias: 0.6 + Math.random() * 0.6,
         })
       }
       setNodes(points)
@@ -69,15 +75,22 @@ export default function SymbioteCursor() {
 
       if (!isVisible) return
 
-      // Draw web connections - sticky, organic
-      ctx.lineWidth = 2
+      const time = performance.now() / 1000
+
+      // Draw web connections - sticky, organic, MORE VISIBLE
+      ctx.lineWidth = 5.6
 
       nodes.forEach((node) => {
-        const distance = Math.hypot(currentCursorX - node.x, currentCursorY - node.y)
+        const wobbleX = Math.sin(time * 0.35 + node.phase) * node.drift
+        const wobbleY = Math.cos(time * 0.28 + node.phase) * (node.drift * 0.7)
+        const nx = node.x + wobbleX
+        const ny = node.y + wobbleY
+
+        const distance = Math.hypot(currentCursorX - nx, currentCursorY - ny)
         const maxDistance = 250
 
         if (distance < maxDistance) {
-          const opacity = (1 - distance / maxDistance) * 0.2
+          const opacity = (1 - distance / maxDistance) * 1.15 * node.bias
           const stretch = distance / maxDistance
 
           // Sticky, curved connection
@@ -85,53 +98,66 @@ export default function SymbioteCursor() {
           ctx.moveTo(currentCursorX, currentCursorY)
 
           // Control points for organic curve
-          const controlX = (currentCursorX + node.x) / 2 + (Math.random() - 0.5) * 20
-          const controlY = (currentCursorY + node.y) / 2 + (Math.random() - 0.5) * 20
+          const controlX = (currentCursorX + nx) / 2 + Math.sin(time + node.phase) * 26
+          const controlY = (currentCursorY + ny) / 2 + Math.cos(time * 0.8 + node.phase) * 22
 
-          ctx.quadraticCurveTo(controlX, controlY, node.x, node.y)
+          ctx.quadraticCurveTo(controlX, controlY, nx, ny)
 
-          // Green/yellow gradient
-          const gradient = ctx.createLinearGradient(currentCursorX, currentCursorY, node.x, node.y)
-          gradient.addColorStop(0, `rgba(100, 200, 50, ${opacity})`)
-          gradient.addColorStop(0.5, `rgba(150, 220, 80, ${opacity * 0.8})`)
-          gradient.addColorStop(1, `rgba(200, 200, 50, ${opacity * 0.6})`)
+          // Deep maroon web for high contrast without extra glow
+          const gradient = ctx.createLinearGradient(currentCursorX, currentCursorY, nx, ny)
+          gradient.addColorStop(0, `rgba(55, 6, 9, ${opacity})`)
+          gradient.addColorStop(0.5, `rgba(85, 10, 14, ${opacity * 0.85})`)
+          gradient.addColorStop(1, `rgba(50, 6, 9, ${opacity * 0.7})`)
 
           ctx.strokeStyle = gradient
           ctx.stroke()
 
-          // Organic blob at node
+          // Organic blob at node - visible
           ctx.beginPath()
-          ctx.arc(node.x, node.y, 3 * (1 - stretch), 0, Math.PI * 2)
-          ctx.fillStyle = `rgba(150, 220, 80, ${opacity * 0.6})`
+          ctx.arc(nx, ny, 4 * (1 - stretch), 0, Math.PI * 2)
+          const blobGradient = ctx.createRadialGradient(nx, ny, 0, nx, ny, 4 * (1 - stretch))
+          blobGradient.addColorStop(0, `rgba(220, 215, 210, ${opacity * 0.55})`)
+          blobGradient.addColorStop(1, `rgba(95, 40, 40, ${opacity * 0.35})`)
+          ctx.fillStyle = blobGradient
           ctx.fill()
         }
       })
 
-      // Connect nearby nodes - very subtle background web
-      ctx.lineWidth = 1
+      // Connect nearby nodes - more visible background web
+      ctx.lineWidth = 3.2
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
-          const distance = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y)
-          if (distance < 200) {
+          const ni = nodes[i]
+          const nj = nodes[j]
+          const nix = ni.x + Math.sin(time * 0.35 + ni.phase) * ni.drift
+          const niy = ni.y + Math.cos(time * 0.28 + ni.phase) * (ni.drift * 0.7)
+          const njx = nj.x + Math.sin(time * 0.35 + nj.phase) * nj.drift
+          const njy = nj.y + Math.cos(time * 0.28 + nj.phase) * (nj.drift * 0.7)
+          const distance = Math.hypot(nix - njx, niy - njy)
+          if (distance < 320) {
             ctx.beginPath()
-            ctx.moveTo(nodes[i].x, nodes[i].y)
-            ctx.lineTo(nodes[j].x, nodes[j].y)
-            ctx.strokeStyle = 'rgba(100, 200, 50, 0.02)'
+            ctx.moveTo(nix, niy)
+            ctx.lineTo(njx, njy)
+            const bgGradient = ctx.createLinearGradient(nix, niy, njx, njy)
+            bgGradient.addColorStop(0, 'rgba(60, 8, 10, 0.05)')
+            bgGradient.addColorStop(1, 'rgba(40, 6, 8, 0.05)')
+            ctx.strokeStyle = bgGradient
             ctx.stroke()
           }
         }
       }
 
-      // Draw cursor center - organic blob
-      const pulseSize = 4 + Math.sin(Date.now() / 500) * 1
+      // Draw cursor center - organic pulsing blob
+      const pulseSize = 9.5 + Math.sin(Date.now() / 500) * 3.7
       ctx.beginPath()
       ctx.arc(currentCursorX, currentCursorY, pulseSize, 0, Math.PI * 2)
       const cursorGradient = ctx.createRadialGradient(
         currentCursorX, currentCursorY, 0,
         currentCursorX, currentCursorY, pulseSize
       )
-      cursorGradient.addColorStop(0, 'rgba(150, 220, 80, 0.5)')
-      cursorGradient.addColorStop(1, 'rgba(100, 200, 50, 0.2)')
+      cursorGradient.addColorStop(0, 'rgba(220, 215, 210, 0.6)')
+      cursorGradient.addColorStop(0.5, 'rgba(130, 70, 70, 0.35)')
+      cursorGradient.addColorStop(1, 'rgba(80, 20, 25, 0.2)')
       ctx.fillStyle = cursorGradient
       ctx.fill()
     }
@@ -173,18 +199,18 @@ export default function SymbioteCursor() {
     <>
       <canvas
         ref={canvasRef}
-        className="fixed inset-0 pointer-events-none z-0 opacity-70"
-        style={{ mixBlendMode: 'screen' }}
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{ mixBlendMode: 'screen', opacity: 0.9 }}
       />
 
-      {/* Cursor glow - organic green/yellow */}
+      {/* Cursor glow kept minimal to avoid washing out the webs */}
       <motion.div
-        className="fixed pointer-events-none z-0 w-12 h-12 -ml-6 -mt-6 rounded-full blur-xl"
+        className="fixed pointer-events-none z-0 w-16 h-16 -ml-8 -mt-8 rounded-full blur-2xl"
         style={{
           left: cursorXSpring,
           top: cursorYSpring,
-          opacity: isVisible ? 0.4 : 0,
-          background: 'radial-gradient(circle, rgba(150, 220, 80, 0.3), rgba(100, 200, 50, 0.1))',
+          opacity: isVisible ? 0.55 : 0,
+          background: 'radial-gradient(circle, rgba(180, 140, 140, 0.35), rgba(120, 40, 45, 0.2), rgba(70, 10, 15, 0.1))',
         }}
         transition={{ duration: 0.2 }}
       />

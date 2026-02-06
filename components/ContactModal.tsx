@@ -15,12 +15,45 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     message: '',
   })
   const [isFocused, setIsFocused] = useState<string | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form submitted:', formState)
-    // Handle form submission here
-    onClose()
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+    setErrorMessage('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formState),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
+
+      setSubmitStatus('success')
+      setFormState({ name: '', email: '', message: '' })
+
+      // Close modal after showing success
+      setTimeout(() => {
+        onClose()
+        setSubmitStatus('idle')
+      }, 2000)
+    } catch (error) {
+      setSubmitStatus('error')
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to send message')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (
@@ -179,16 +212,129 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   {/* Submit */}
                   <motion.button
                     type="submit"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full px-8 py-4 bg-charcoal border border-accent/40 text-bone font-grotesk text-sm tracking-wider uppercase hover:bg-accent/10 transition-colors duration-300"
+                    disabled={isSubmitting}
+                    whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                    whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                    className="w-full px-8 py-4 bg-charcoal border border-accent/40 text-bone font-grotesk text-sm tracking-wider uppercase hover:bg-accent/10 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <span className="flex items-center justify-center gap-2">
-                      Transmit
-                      <span className="font-distorted text-accent">→</span>
+                      {isSubmitting ? (
+                        <>
+                          Transmitting
+                          <motion.span
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                            className="inline-block"
+                          >
+                            ⟳
+                          </motion.span>
+                        </>
+                      ) : submitStatus === 'success' ? (
+                        <>
+                          Transmitted
+                          <span className="text-accent">✓</span>
+                        </>
+                      ) : (
+                        <>
+                          Transmit
+                          <span className="font-distorted text-accent">→</span>
+                        </>
+                      )}
                     </span>
                   </motion.button>
+
+                  {/* Status messages */}
+                  <AnimatePresence>
+                    {submitStatus === 'success' && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        className="text-center font-grotesk text-sm text-accent"
+                      >
+                        Message sent successfully. Closing...
+                      </motion.p>
+                    )}
+                    {submitStatus === 'error' && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        className="text-center font-grotesk text-sm text-accent"
+                      >
+                        {errorMessage}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
                 </form>
+
+                {/* Social links - Quick contact alternatives */}
+                <div className="mt-8 pt-6 border-t border-bone/10">
+                  <p className="text-center font-grotesk text-xs text-bone/40 mb-4 uppercase tracking-wider">
+                    Or reach out directly
+                  </p>
+                  <div className="flex items-center justify-center gap-4">
+                    <motion.a
+                      href={process.env.NEXT_PUBLIC_BEHANCE_URL || 'https://behance.net'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-10 h-10 glass border border-bone/10 flex items-center justify-center text-bone/60 hover:text-accent hover:border-accent/40 transition-colors duration-300"
+                      title="Behance"
+                    >
+                      <span className="font-grotesk font-bold text-sm">Bē</span>
+                    </motion.a>
+
+                    <motion.a
+                      href={process.env.NEXT_PUBLIC_GITHUB_URL || 'https://github.com'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-10 h-10 glass border border-bone/10 flex items-center justify-center text-bone/60 hover:text-accent hover:border-accent/40 transition-colors duration-300"
+                      title="GitHub"
+                    >
+                      <span className="font-grotesk font-bold text-sm">Gh</span>
+                    </motion.a>
+
+                    <motion.a
+                      href={process.env.NEXT_PUBLIC_WHATSAPP_URL || 'https://wa.me/1234567890'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-10 h-10 glass border border-bone/10 flex items-center justify-center text-bone/60 hover:text-accent hover:border-accent/40 transition-colors duration-300"
+                      title="WhatsApp"
+                    >
+                      <span className="font-grotesk font-bold text-sm">Wa</span>
+                    </motion.a>
+
+                    <motion.a
+                      href={process.env.NEXT_PUBLIC_TWITTER_URL || 'https://twitter.com'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-10 h-10 glass border border-bone/10 flex items-center justify-center text-bone/60 hover:text-accent hover:border-accent/40 transition-colors duration-300"
+                      title="Twitter/X"
+                    >
+                      <span className="font-grotesk font-bold text-sm">𝕏</span>
+                    </motion.a>
+
+                    <motion.a
+                      href={process.env.NEXT_PUBLIC_BLOG_URL || 'https://medium.com'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-10 h-10 glass border border-bone/10 flex items-center justify-center text-bone/60 hover:text-accent hover:border-accent/40 transition-colors duration-300"
+                      title="Blog"
+                    >
+                      <span className="font-grotesk font-bold text-sm">Bl</span>
+                    </motion.a>
+                  </div>
+                </div>
 
                 {/* Footer note */}
                 <p className="mt-6 text-center font-grotesk text-xs text-bone/30">

@@ -14,8 +14,8 @@ export default function Hero() {
     offset: ['start start', 'end start'],
   })
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200])
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.5, 0])
+  const y = useTransform(scrollYProgress, [0, 1], [0, 120])
+  const opacity = useTransform(scrollYProgress, [0, 0.6, 1], [1, 0.7, 0.15])
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -43,16 +43,6 @@ export default function Hero() {
       ref={sectionRef}
       className="min-h-screen flex items-center relative overflow-hidden grain"
     >
-      {/* Subtle red atmospheric light - very minimal */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none opacity-10"
-        style={{
-          background: `radial-gradient(circle at ${50 + mousePosition.x * 20}% ${
-            50 + mousePosition.y * 20
-          }%, rgba(139, 0, 0, 0.15) 0%, transparent 60%)`,
-        }}
-      />
-
       <motion.div
         style={{ y, opacity }}
         className="relative z-10 px-6 md:px-12 lg:px-24 max-w-7xl w-full"
@@ -72,7 +62,13 @@ export default function Hero() {
               }}
               className="relative"
             >
-              <h1 className="relative font-serif text-7xl md:text-8xl lg:text-[10rem] tracking-tight text-bone leading-none">
+              <h1
+                className="relative font-serif text-7xl md:text-8xl lg:text-[10rem] tracking-tight text-bone leading-none"
+                style={{
+                  textShadow:
+                    '0 0 12px rgba(120, 10, 15, 0.22), 0 0 18px rgba(35, 160, 190, 0.12)',
+                }}
+              >
                 <span className="relative inline-block">
                   {/* Base text with dollar sign */}
                   <span className={glitchActive ? 'opacity-90' : ''}>
@@ -114,12 +110,18 @@ export default function Hero() {
                 </span>
               </h1>
 
-              {/* Thin red accent line */}
+              {/* Thin trace lines */}
               <motion.div
-                className="absolute -bottom-3 left-0 h-px bg-accent origin-left w-32"
+                className="absolute -bottom-3 left-0 h-px bg-accent origin-left w-36"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ delay: 1.5, duration: 1.5, ease: [0.43, 0.13, 0.23, 0.96] }}
+              />
+              <motion.div
+                className="absolute -bottom-4 left-0 h-px bg-cyan-400/20 origin-left w-16"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 1.7, duration: 1.6, ease: [0.43, 0.13, 0.23, 0.96] }}
               />
             </motion.div>
 
@@ -206,7 +208,7 @@ export default function Hero() {
         {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={{ opacity: 0.6 }}
           transition={{ delay: 2, duration: 1 }}
           className="absolute bottom-12 left-12 flex flex-col items-start gap-3"
         >
@@ -225,19 +227,6 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Minimal background pattern */}
-      <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgb(244, 244, 240) 1px, transparent 0)`,
-            backgroundSize: '50px 50px',
-          }}
-        />
-      </div>
-
-      {/* Vignette */}
-      <div className="absolute inset-0 pointer-events-none bg-gradient-radial from-transparent via-transparent to-ink/60" />
     </section>
   )
 }

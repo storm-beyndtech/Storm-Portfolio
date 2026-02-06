@@ -14,6 +14,7 @@ import ArtGallery from '@/components/ArtGallery'
 import DesignShowcase from '@/components/DesignShowcase'
 import FloatingContact from '@/components/FloatingContact'
 import ContactModal from '@/components/ContactModal'
+import JellyEmote from '@/components/JellyEmote'
 
 const AtmosphericBackground = dynamic(
   () => import('@/components/AtmosphericBackground'),
@@ -38,6 +39,7 @@ export default function Home() {
       <Navigation />
 
       <FloatingContact onMailClick={() => setIsContactModalOpen(true)} />
+
 
       <ContactModal
         isOpen={isContactModalOpen}
@@ -85,6 +87,14 @@ export default function Home() {
       />
 
       <AboutSection />
+
+      <WritingFragment
+        text="Signatures leave traces. This one breathes."
+        align="center"
+        size="sm"
+      />
+
+      <JellyEmote />
 
       <QuickActions />
 
