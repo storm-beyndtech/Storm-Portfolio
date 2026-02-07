@@ -9,11 +9,11 @@ export default function MazeranceSignal() {
       className="section-spacing px-6 md:px-12 lg:px-24 relative overflow-hidden"
     >
       <div
-        className="absolute inset-0 pointer-events-none opacity-30"
+        className="absolute inset-0 pointer-events-none opacity-15"
         style={{
           backgroundImage:
-            'linear-gradient(transparent 92%, rgba(244,244,240,0.08) 100%), linear-gradient(90deg, transparent 92%, rgba(244,244,240,0.08) 100%), radial-gradient(circle at 1px 1px, rgba(244,244,240,0.3) 1px, transparent 0)',
-          backgroundSize: '26px 26px, 26px 26px, 46px 46px',
+            'linear-gradient(transparent 94%, rgba(244,244,240,0.06) 100%), linear-gradient(90deg, transparent 94%, rgba(244,244,240,0.06) 100%)',
+          backgroundSize: '32px 32px, 32px 32px',
         }}
       />
       <motion.div
@@ -28,11 +28,11 @@ export default function MazeranceSignal() {
       />
       <motion.div
         className="absolute inset-0 pointer-events-none"
-        animate={{ opacity: [0.18, 0.45, 0.25], scale: [0.94, 1.05, 0.98] }}
-        transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ opacity: [0.1, 0.3, 0.18], scale: [0.96, 1.03, 0.98] }}
+        transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
         style={{
           background:
-            'radial-gradient(circle at 50% 40%, rgba(139,0,0,0.35) 0%, transparent 65%)',
+            'radial-gradient(circle at 50% 40%, rgba(139,0,0,0.22) 0%, transparent 65%)',
         }}
       />
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
@@ -108,35 +108,28 @@ export default function MazeranceSignal() {
                 'radial-gradient(circle at 70% 60%, rgba(35,160,190,0.15) 0%, transparent 55%)',
             }}
           />
-          <div className="relative z-10 space-y-4">
+          <div className="relative z-10">
             <div className="text-xs font-grotesk uppercase tracking-[0.3em] text-bone/40">
-              Signal Queue
+              Signal Frame
             </div>
-            <div className="space-y-3">
-            {['Signal Received', 'Track Alignment', 'Proof of Craft', 'Deployment Readiness'].map((item, idx) => (
-                <div key={item} className="flex items-center gap-3">
-                  <div className="h-px flex-1 bg-bone/10" />
-                  <span className="text-xs font-grotesk text-bone/50 uppercase tracking-[0.3em]">
-                    {String(idx + 1).padStart(2, '0')} / {item}
-                  </span>
-                </div>
+            <div className="mt-6 grid grid-cols-3 gap-4">
+              {[1, 2, 3, 4, 5, 6].map((cell) => (
+                <motion.div
+                  key={cell}
+                  className="h-10 border border-bone/10 bg-bone/5"
+                  animate={{ opacity: [0.3, 0.8, 0.4] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: cell * 0.2 }}
+                />
               ))}
             </div>
             <motion.div
-              className="h-px bg-accent/40"
+              className="mt-6 h-px bg-accent/40"
               animate={{ scaleX: [0.2, 1, 0.4] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
               style={{ transformOrigin: 'left' }}
             />
-            <motion.div
-              className="absolute right-6 top-6 text-[10px] font-mono text-bone/30 tracking-[0.4em]"
-              animate={{ opacity: [0.2, 0.5, 0.25] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              0xA9 / 0x1F
-            </motion.div>
-            <div className="text-xs font-grotesk text-bone/40 uppercase tracking-[0.3em]">
-              Status: Awaiting Transmission
+            <div className="mt-4 text-xs font-grotesk text-bone/40 uppercase tracking-[0.3em]">
+              Transmission: Armed
             </div>
           </div>
         </div>
