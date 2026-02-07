@@ -34,16 +34,16 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/signals/Dream.jpg',
+        url: '/Storm-Flyer-Short.png',
         width: 1200,
         height: 630,
-        alt: 'Storm — Dream',
+        alt: 'Storm — Flyer (Short)',
       },
       {
-        url: '/signals/Dreamlike Forest Rest.jpg',
+        url: '/Storm-Flyer.png',
         width: 1200,
         height: 630,
-        alt: 'Storm — Dreamlike Forest',
+        alt: 'Storm — Flyer',
       },
     ],
   },
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Storm',
     description: 'Product Designer × Software Engineer × Dystopian Horror Writer',
-    images: ['/signals/Dream.jpg'],
+    images: ['/Storm-Flyer-Short.png'],
   },
 }
 
