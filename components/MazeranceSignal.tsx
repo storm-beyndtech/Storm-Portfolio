@@ -74,9 +74,9 @@ export default function MazeranceSignal() {
             end-to-end — research to design to build, then refine until it holds.
           </p>
           <div className="flex flex-wrap gap-3 text-xs font-grotesk text-bone/50 uppercase tracking-[0.3em]">
-            <span>System Design</span>
-            <span>Frontend Engineering</span>
-            <span>Motion & Interaction</span>
+            <span>Product Designer</span>
+            <span>Software Engineer</span>
+            <span>Dystopian Horror Writer</span>
           </div>
           <a
             href="https://www.mazerance.com/winter-internship"
