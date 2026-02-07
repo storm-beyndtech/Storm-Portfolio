@@ -3,91 +3,119 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 
-const projects = [
+type Project = {
+  id: string
+  title: string
+  type: string
+  year: string
+  status?: string
+  symbol?: 'eye' | 'heart'
+  aura?: string
+  description: string
+  tags: string[]
+  url?: string
+  details?: string[]
+  actions?: string[]
+}
+
+const projects: Project[] = [
   {
-    id: '000',
-    title: 'Bleenk',
-    type: 'Active System',
-    year: '2026',
-    status: 'In progress',
-    description: 'Ongoing system with real constraints. Built to sustain attention without exploiting it.',
-    tags: ['System Design', 'Operational UX', 'Constraint-Led'],
-    details: [
-      'Constraint-driven system design with measurable tradeoffs.',
-      'Quiet UI states that reduce cognitive load.',
-      'Operational insights surfaced without aggressive prompts.',
-    ],
-  },
-  {
-    id: '000B',
+    id: '001',
     title: 'Nakupenda',
     type: 'Design Exploration',
     year: '2026',
     status: 'In progress',
+    symbol: 'heart',
     description:
-      'An exploration of emotional presence in digital interaction. Focused on calm, intimacy, and restraint rather than engagement metrics.',
-    tags: ['Emotional UI', 'Typography-Led', 'Mood Theming', 'Narrative Interaction'],
-    actions: ['Design process (Behance / Figma)', 'Notes (future)'],
+      'Human-first social infrastructure built around presence, boundaries, and intentional connection.',
+    tags: ['Emotional UI', 'Typography-Led', 'System Tone'],
+    url: '/case-studies/nakupenda',
     details: [
-      'Conceptual system framing, not a shipped product.',
-      'Typography-led hierarchy with ambient rhythm.',
-      'Interaction tuned for restraint over response.',
-    ],
-  },
-  {
-    id: '001',
-    title: 'Vesper Protocol',
-    type: 'Design System',
-    year: '2025',
-    description: 'Modular interface architecture for surveillance platforms. Typography as control mechanism.',
-    tags: ['Interface Design', 'Motion System', 'Dark Patterns'],
-    url: '#', // Replace with actual project URL
-    details: [
-      'Tokenized layout and motion primitives.',
-      'High-contrast data states for long-duration use.',
-      'Guardrails for behavioral manipulation avoidance.',
+      'Currents filter attention before harm begins.',
+      'Community Control replaces opaque moderation.',
+      'TEXTin turns messaging into emotional infrastructure.',
     ],
   },
   {
     id: '002',
-    title: 'The Listening',
-    type: 'Product Engineering',
-    year: '2024',
-    description: 'Real-time audio processing infrastructure. Built for continuous monitoring, optimized for silence detection.',
-    tags: ['React', 'WebAudio API', 'Node.js'],
-    url: '#', // Replace with actual project URL
+    title: 'Rasman',
+    type: 'Music Portfolio',
+    year: '2025',
+    status: 'Live',
+    description:
+      'Audio-led layout with harmonic pacing and responsive emphasis.',
+    tags: ['Motion', 'Audio UI', 'Rhythm'],
+    url: '/case-studies/rasman',
     details: [
-      'Low-latency streaming pipeline.',
-      'Silence-first heuristics to reduce noise.',
-      'Edge-safe performance budget.',
+      'Motion tuned to breath cycles.',
+      'Sound-forward layout hierarchy.',
+      'Quiet transitions for emotional pacing.',
     ],
   },
   {
     id: '003',
-    title: 'Signal/Noise',
-    type: 'Experimental Interface',
-    year: '2024',
-    description: 'Data visualization for pattern recognition. Transforms chaos into legible threat.',
-    tags: ['Three.js', 'WebGL', 'Generative Systems'],
-    url: '#', // Replace with actual project URL
+    title: 'Bleenk',
+    type: 'Active System',
+    year: '2026',
+    status: 'In progress',
+    symbol: 'eye',
+    aura: 'Aura: Blink / Instant settlement / Quiet escalation',
+    description:
+      'A payment system that treats trust as a living signal. Blink-state validation, global latency awareness.',
+    tags: ['Financial UX', 'Real-Time Systems', 'Constraint-Led'],
+    url: '/case-studies/bleenk',
     details: [
-      'Procedural topology for shifting datasets.',
-      'Sparse annotation system for cognitive focus.',
-      'Motion tuned to prevent fatigue.',
+      'Blink-state verification for instant payment trust.',
+      'Latency-aware handoff across regions.',
+      'Degrades gracefully under load without panic.',
     ],
   },
   {
     id: '004',
-    title: 'Sleep Registry',
-    type: 'Full Stack Application',
-    year: '2023',
-    description: 'Dream logging system with temporal analysis. Memory as evidence. Rest as vulnerability.',
-    tags: ['Next.js', 'PostgreSQL', 'Encryption'],
-    url: '#', // Replace with actual project URL
+    title: 'Dash NG Shop',
+    type: 'Live System',
+    year: '2025',
+    status: 'Live',
+    description:
+      'Multi-role e-commerce command system engineered for real-time certainty.',
+    tags: ['Real-Time', 'Inventory', 'Payment Verification'],
+    url: '/case-studies/dash',
     details: [
-      'Encrypted journaling and temporal tagging.',
-      'Ambient recall prompts without pressure.',
-      'Exportable timelines for pattern review.',
+      'Sub-100ms inventory sync across roles.',
+      'Currency conversion cache to reduce load.',
+      'Automated payment verification with fraud checks.',
+    ],
+  },
+  {
+    id: '005',
+    title: 'Pearl',
+    type: 'System Suite',
+    year: '2025',
+    status: 'Live',
+    description:
+      'Cohesive interface lattice for high-trust environments.',
+    tags: ['Design System', 'Tokens', 'Accessibility'],
+    url: '/case-studies/pearl',
+    details: [
+      'Monochrome hierarchy with micro-contrast.',
+      'Tokenized spacing and durable rhythm.',
+      'Ceremonial flows to reduce error states.',
+    ],
+  },
+  {
+    id: '006',
+    title: 'Sleep Surveillance',
+    type: 'Pending Build',
+    year: '2026',
+    status: 'In progress',
+    description:
+      'A system that treats sleep as a monitored signal, not a passive state.',
+    tags: ['Bio Systems', 'Memory', 'Signal Integrity'],
+    url: '/case-studies/sleep-surveillance',
+    details: [
+      'Dream-state indexing with temporal drift.',
+      'Soft alerts without dopamine triggers.',
+      'Consent-first telemetry capture.',
     ],
   },
 ]
@@ -140,13 +168,51 @@ function ProjectCard({
                 whileHover={{ x: 4 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="font-serif text-3xl md:text-5xl lg:text-6xl tracking-tight text-bone group-hover:text-bone/90 transition-colors duration-500">
+                <h3 className="font-serif text-3xl md:text-5xl lg:text-6xl tracking-tight text-bone group-hover:text-bone/90 transition-colors duration-500 flex items-center gap-3">
                   {project.title}
+                  {project.symbol === 'eye' ? (
+                    <motion.span
+                      className="inline-flex items-center justify-center"
+                      animate={{ opacity: [0.5, 1, 0.5] }}
+                      transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+                    >
+                      <svg width="28" height="14" viewBox="0 0 28 14" fill="none">
+                        <path
+                          d="M1 7 C 5 1, 10 1, 14 1 C 18 1, 23 1, 27 7 C 23 13, 18 13, 14 13 C 10 13, 5 13, 1 7 Z"
+                          stroke="rgba(244,244,240,0.6)"
+                          strokeWidth="1"
+                        />
+                        <circle cx="14" cy="7" r="3" fill="rgba(139,0,0,0.6)" />
+                      </svg>
+                    </motion.span>
+                  ) : null}
+                  {project.symbol === 'heart' ? (
+                    <span className="text-bone/50 text-2xl">♡</span>
+                  ) : null}
                 </h3>
               </motion.a>
             ) : (
-              <h3 className="font-serif text-3xl md:text-5xl lg:text-6xl tracking-tight text-bone/90">
+              <h3 className="font-serif text-3xl md:text-5xl lg:text-6xl tracking-tight text-bone/90 flex items-center gap-3">
                 {project.title}
+                {project.symbol === 'eye' ? (
+                  <motion.span
+                    className="inline-flex items-center justify-center"
+                    animate={{ opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <svg width="28" height="14" viewBox="0 0 28 14" fill="none">
+                      <path
+                        d="M1 7 C 5 1, 10 1, 14 1 C 18 1, 23 1, 27 7 C 23 13, 18 13, 14 13 C 10 13, 5 13, 1 7 Z"
+                        stroke="rgba(244,244,240,0.6)"
+                        strokeWidth="1"
+                      />
+                      <circle cx="14" cy="7" r="3" fill="rgba(139,0,0,0.6)" />
+                    </svg>
+                  </motion.span>
+                ) : null}
+                {project.symbol === 'heart' ? (
+                  <span className="text-bone/50 text-2xl">♡</span>
+                ) : null}
               </h3>
             )}
             <div className="flex items-center gap-4 text-sm text-bone/50">
@@ -204,6 +270,12 @@ function ProjectCard({
             </div>
           ) : null}
 
+          {project.aura ? (
+            <div className="pt-2 font-mono text-xs text-bone/40 uppercase tracking-[0.3em]">
+              {project.aura}
+            </div>
+          ) : null}
+
           {/* Hover indicator - minimal red accent */}
           <motion.div
             className="h-px bg-accent/30 origin-left"
@@ -243,9 +315,9 @@ export default function ProjectsSection() {
           ARCHIVE
         </h2>
         <p className="font-serif text-4xl md:text-6xl lg:text-7xl tracking-tight text-bone/90 max-w-4xl leading-tight">
-          Selected works.
+          Live systems and active builds.
           <br />
-          <span className="text-bone/40">Each designed to observe.</span>
+          <span className="text-bone/40">Operational, pending, or in motion.</span>
         </p>
       </motion.div>
 

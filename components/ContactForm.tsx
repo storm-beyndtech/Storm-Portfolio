@@ -8,6 +8,7 @@ export default function ContactForm() {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
+    intent: 'Inquiry',
     message: '',
   })
   const [isFocused, setIsFocused] = useState<string | null>(null)
@@ -27,7 +28,7 @@ export default function ContactForm() {
   }
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     setFormState((prev) => ({
       ...prev,
@@ -156,6 +157,36 @@ export default function ContactForm() {
                         : 'rgba(244, 244, 240, 0.1)',
                   }}
                 />
+              </div>
+
+              {/* Intent field */}
+              <div className="space-y-3">
+                <label
+                  htmlFor="intent"
+                  className="block font-grotesk text-sm text-bone/60 tracking-wide"
+                >
+                  Transmission Type
+                </label>
+                <motion.select
+                  id="intent"
+                  name="intent"
+                  value={formState.intent}
+                  onChange={handleChange}
+                  onFocus={() => setIsFocused('intent')}
+                  onBlur={() => setIsFocused(null)}
+                  className="w-full bg-charcoal/50 border border-bone/10 px-6 py-4 font-grotesk text-bone text-lg focus:border-accent/50 focus:outline-none transition-all duration-500 backdrop-blur-sm"
+                  animate={{
+                    borderColor:
+                      isFocused === 'intent'
+                        ? 'rgba(139, 0, 0, 0.5)'
+                        : 'rgba(244, 244, 240, 0.1)',
+                  }}
+                >
+                  <option value="Quote">Quote</option>
+                  <option value="Inquiry">Inquiry</option>
+                  <option value="Collaboration">Collaboration</option>
+                  <option value="Other">Other</option>
+                </motion.select>
               </div>
 
               {/* Message field */}

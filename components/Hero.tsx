@@ -62,6 +62,9 @@ export default function Hero() {
               }}
               className="relative"
             >
+              <div className="mb-3 font-mono text-xs uppercase tracking-[0.4em] text-bone/40">
+                Victor Nwachukwu
+              </div>
               <h1
                 className="relative font-serif text-7xl md:text-8xl lg:text-[10rem] tracking-tight text-bone leading-none"
                 style={{

@@ -5,11 +5,13 @@ import { useEffect, useState } from 'react'
 
 const sections = [
   { id: 'projects', label: 'Archive' },
+  { id: 'signals', label: 'Signals' },
   { id: 'gallery', label: 'Visual' },
   { id: 'designs', label: 'Systems' },
+  { id: 'internship', label: 'Transmission' },
   { id: 'techniques', label: 'Methods' },
   { id: 'about', label: 'Identity' },
-  { id: 'contact', label: 'Signal' },
+  { id: 'contact', label: 'Contact' },
 ]
 
 export default function Navigation() {
@@ -21,7 +23,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 2
+      const viewportCenter = window.innerHeight / 2
 
       // Show nav after threshold
       setIsVisible(window.scrollY > 400)
@@ -30,11 +32,10 @@ export default function Navigation() {
       for (const section of sections) {
         const element = document.getElementById(section.id)
         if (element) {
-          const { offsetTop, offsetHeight } = element
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
+          const rect = element.getBoundingClientRect()
+          const top = rect.top
+          const bottom = rect.bottom
+          if (top <= viewportCenter && bottom > viewportCenter) {
             setActiveSection(section.id)
             return
           }
