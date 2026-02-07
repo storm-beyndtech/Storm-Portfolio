@@ -152,7 +152,7 @@ export default function NakupendaCaseStudy() {
 					<h3 className="font-serif text-xl text-bone/80">External Archive</h3>
 					<p className="font-grotesk text-sm text-bone/50 mt-2">Additional artifacts live on Behance.</p>
 					<a
-						href="https://www.behance.net/bigstorm-beyndtech"
+						href="https://www.behance.net/gallery/243708621/Nakupenda"
 						target="_blank"
 						rel="noreferrer"
 						className="inline-block mt-4 font-grotesk text-xs uppercase tracking-[0.3em] text-bone/60 hover:text-bone"

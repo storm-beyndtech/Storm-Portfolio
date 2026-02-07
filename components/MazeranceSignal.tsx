@@ -57,16 +57,6 @@ export default function MazeranceSignal() {
               }}
             />
           ))}
-          <motion.div
-            className="absolute inset-0 rounded-full hidden md:block"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 9, repeat: Infinity, ease: 'linear' }}
-            style={{
-              background:
-                'conic-gradient(from 0deg, rgba(139,0,0,0.0), rgba(139,0,0,0.22), rgba(139,0,0,0.0))',
-              maskImage: 'radial-gradient(circle, transparent 45%, black 46%, black 100%)',
-            }}
-          />
         </div>
       </div>
 
