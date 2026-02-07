@@ -13,15 +13,15 @@ const onboardingScreens = [
 ];
 
 const whisperScreens = [
+	{ label: "Host State", src: "/case-studies/nakupenda/Whisper-Snippet.jpg" },
+	{ label: "Moments Modal", src: "/case-studies/nakupenda/Whisper.jpg" },
 	{ label: "Listener State", src: "/case-studies/nakupenda/Post-and-Comments.jpg" },
-	{ label: "Host State", src: "/case-studies/nakupenda/Biz-Profile-Blog-Tab.jpg" },
-	{ label: "Moments Modal", src: "/case-studies/nakupenda/Blog-Locked.jpg" },
 ];
 
 const coreScreens = [
+	{ label: "TEXTin — Chat A", src: "/case-studies/nakupenda/Chat-Welcome.jpg" },
 	{ label: "Blog", src: "/case-studies/nakupenda/Blog-Locked.jpg" },
 	{ label: "Feed", src: "/case-studies/nakupenda/Post-and-Comments.jpg" },
-	{ label: "TEXTin — Chat A", src: "/case-studies/nakupenda/Chat.jpg" },
 	{ label: "TEXTin — Chat B", src: "/case-studies/nakupenda/Chat.jpg" },
 ];
 
