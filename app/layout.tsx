@@ -25,10 +25,33 @@ const bebasNeue = Bebas_Neue({
 export const metadata: Metadata = {
   title: 'Storm',
   description: 'Product Designer × Software Engineer × Dystopian Horror Writer',
+  icons: {
+    icon: '/favicon.svg',
+  },
   openGraph: {
     title: 'Storm',
     description: 'Product Designer × Software Engineer × Dystopian Horror Writer',
     type: 'website',
+    images: [
+      {
+        url: '/signals/Dream.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Storm — Dream',
+      },
+      {
+        url: '/signals/Dreamlike Forest Rest.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Storm — Dreamlike Forest',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Storm',
+    description: 'Product Designer × Software Engineer × Dystopian Horror Writer',
+    images: ['/signals/Dream.jpg'],
   },
 }
 
