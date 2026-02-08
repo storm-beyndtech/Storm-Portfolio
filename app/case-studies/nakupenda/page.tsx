@@ -6,10 +6,9 @@ import Link from "next/link";
 const onboardingScreens = [
 	"/case-studies/nakupenda/Login-Screen-Dark.jpg",
 	"/case-studies/nakupenda/Login-Screen.jpg",
-	"/case-studies/nakupenda/Onboarding-Screen-Dark-4.jpg",
-	"/case-studies/nakupenda/Onboarding-Screen-currents.jpg",
-	"/case-studies/nakupenda/Onboarding-Screen-Biz-Dark-2.jpg",
-	"/case-studies/nakupenda/Onboarding-Screen-Biz-3.jpg",
+	"/case-studies/nakupenda/Onboarding-Screen-dark-4.png",
+	"/case-studies/nakupenda/Onboarding-Screen-Dark-1.jpg",
+	"/case-studies/nakupenda/Onboarding-Screen-Currents.jpg",
 ];
 
 const whisperScreens = [
@@ -22,7 +21,7 @@ const coreScreens = [
 	{ label: "TEXTin — Chat A", src: "/case-studies/nakupenda/Chat-Welcome.jpg" },
 	{ label: "Blog", src: "/case-studies/nakupenda/Blog-Locked.jpg" },
 	{ label: "Feed", src: "/case-studies/nakupenda/Post-and-Comments.jpg" },
-	{ label: "TEXTin — Chat B", src: "/case-studies/nakupenda/Chat.jpg" },
+	{ label: "TEXTin — Chat B", src: "/case-studies/nakupenda/Biz-Profile.jpg" },
 ];
 
 export default function NakupendaCaseStudy() {

@@ -84,15 +84,15 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 50 }}
             transition={{ duration: 0.4, ease: [0.43, 0.13, 0.23, 0.96] }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-6 pointer-events-none"
+            className="fixed inset-0 z-50 flex items-start justify-center p-6 pointer-events-none overflow-y-auto overflow-x-hidden"
           >
-            <div className="relative w-full max-w-2xl pointer-events-auto">
+            <div className="relative w-full max-w-2xl pointer-events-auto max-h-[85vh] overflow-y-auto overflow-x-hidden pr-2">
               {/* Close button */}
               <motion.button
                 onClick={onClose}
                 whileHover={{ rotate: 90 }}
                 transition={{ duration: 0.3 }}
-                className="absolute -top-4 -right-4 w-10 h-10 glass-heavy border border-bone/20 flex items-center justify-center text-bone/60 hover:text-accent z-10"
+                className="sticky top-4 ml-auto w-10 h-10 glass-heavy border border-bone/20 flex items-center justify-center text-bone/60 hover:text-accent z-10"
               >
                 <span className="font-distorted text-xl">×</span>
               </motion.button>
