@@ -8,7 +8,6 @@ const sections = [
   { id: 'signals', label: 'Signals' },
   { id: 'gallery', label: 'Visual' },
   { id: 'designs', label: 'Systems' },
-  { id: 'internship', label: 'Transmission' },
   { id: 'techniques', label: 'Methods' },
   { id: 'about', label: 'Identity' },
   { id: 'contact', label: 'Contact' },

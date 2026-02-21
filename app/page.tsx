@@ -16,7 +16,6 @@ import FloatingContact from '@/components/FloatingContact'
 import ContactModal from '@/components/ContactModal'
 import JellyEmote from '@/components/JellyEmote'
 import SignalsSection from '@/components/SignalsSection'
-import MazeranceSignal from '@/components/MazeranceSignal'
 
 const AtmosphericBackground = dynamic(
   () => import('@/components/AtmosphericBackground'),
@@ -81,8 +80,6 @@ export default function Home() {
         align="left"
         size="md"
       />
-
-      <MazeranceSignal />
 
       <TechniquesSection />
 
