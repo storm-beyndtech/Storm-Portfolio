@@ -4,15 +4,16 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 const onboardingScreens = [
-	"/case-studies/nakupenda/Login-Screen-Dark.jpg",
 	"/case-studies/nakupenda/Login-Screen.jpg",
-	"/case-studies/nakupenda/Onboarding-Screen-dark-4.png",
+	"/case-studies/nakupenda/Login-Screen-Dark.jpg",
+	"/case-studies/nakupenda/Onboarding-Screen-1.jpg",
+	"/case-studies/nakupenda/Onboarding-Screen-2.jpg",
 	"/case-studies/nakupenda/Onboarding-Screen-Dark-1.jpg",
 	"/case-studies/nakupenda/Onboarding-Screen-Currents.jpg",
 ];
 
 const whisperScreens = [
-	{ label: "Host State", src: "/case-studies/nakupenda/Whisper-Snippet.jpg" },
+	{ label: "Host State", src: "/case-studies/nakupenda/Textin-Boundary.jpg" },
 	{ label: "Moments Modal", src: "/case-studies/nakupenda/Whisper.jpg" },
 	{ label: "Listener State", src: "/case-studies/nakupenda/Post-and-Comments.jpg" },
 ];
@@ -21,7 +22,7 @@ const coreScreens = [
 	{ label: "TEXTin — Chat A", src: "/case-studies/nakupenda/Chat-Welcome.jpg" },
 	{ label: "Blog", src: "/case-studies/nakupenda/Blog-Locked.jpg" },
 	{ label: "Feed", src: "/case-studies/nakupenda/Post-and-Comments.jpg" },
-	{ label: "TEXTin — Chat B", src: "/case-studies/nakupenda/Biz-Profile.jpg" },
+	{ label: "TEXTin — Chat B", src: "/case-studies/nakupenda/Whisper-Snippet.jpg" },
 ];
 
 export default function NakupendaCaseStudy() {
@@ -76,7 +77,7 @@ export default function NakupendaCaseStudy() {
 					</div>
 					<div className="border border-bone/10 bg-ink/40">
 						<img
-							src="/case-studies/nakupenda/Onboarding-Screen-Dark-2.jpg"
+							src="/case-studies/nakupenda/Textin-Call.jpg"
 							alt="Nakupenda system mood"
 							className="w-full h-auto"
 							loading="lazy"
