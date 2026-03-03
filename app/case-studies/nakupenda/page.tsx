@@ -9,6 +9,7 @@ const onboardingScreens = [
 	"/case-studies/nakupenda/Onboarding-Screen-1.jpg",
 	"/case-studies/nakupenda/Onboarding-Screen-2.jpg",
 	"/case-studies/nakupenda/Onboarding-Screen-Dark-1.jpg",
+	"/case-studies/nakupenda/Onboarding-Screen-Dark-2.jpg",
 	"/case-studies/nakupenda/Onboarding-Screen-Currents.jpg",
 ];
 
