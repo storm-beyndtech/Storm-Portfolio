@@ -6,6 +6,17 @@ import { useRef } from "react";
 const designs = [
 	{
 		id: 1,
+		title: "RugBurn",
+		category: "Live Risk Intelligence",
+		description:
+			"Solana token-risk evidence engine. Mint authority, liquidity pressure, holder concentration, and confidence — exposed before action.",
+		year: "2026",
+		tools: ["Next.js", "Go Worker", "Supabase", "MCP"],
+		visual: "risk",
+		caseStudy: "/case-studies/rugburn",
+	},
+	{
+		id: 2,
 		title: "Rasman",
 		category: "Music Portfolio",
 		description: "Audio-led layout with harmonic pacing and responsive emphasis.",
@@ -15,7 +26,7 @@ const designs = [
 		caseStudy: "/case-studies/rasman",
 	},
 	{
-		id: 2,
+		id: 3,
 		title: "Nakupenda",
 		category: "Design Exploration",
 		description: "Emotional UI tuned for calm, intimacy, and restraint.",
@@ -37,6 +48,54 @@ const designs = [
 ];
 
 function SystemPreview({ variant }: { variant: string }) {
+	if (variant === "risk") {
+		return (
+			<div className="relative h-48 md:h-56 overflow-hidden border border-bone/10 bg-ink/70">
+				<img
+					src="/case-studies/rugburn/rugburn flyer.jpg"
+					alt="RugBurn risk intelligence scan signal"
+					className="absolute inset-0 h-full w-full object-cover opacity-60"
+					loading="lazy"
+					decoding="async"
+				/>
+				<div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
+				<motion.div
+					className="absolute inset-0"
+					animate={{ opacity: [0.15, 0.4, 0.18] }}
+					transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+					style={{
+						background: "radial-gradient(circle at 30% 40%, rgba(139,0,0,0.35) 0%, transparent 55%)",
+					}}
+				/>
+				<motion.div
+					className="absolute left-0 right-0 h-px bg-accent/40"
+					animate={{ top: ["0%", "100%"] }}
+					transition={{ duration: 4.5, repeat: Infinity, ease: "linear" }}
+				/>
+				<div className="absolute inset-0 grid grid-cols-4 gap-px opacity-40">
+					{Array.from({ length: 4 }).map((_, idx) => (
+						<motion.div
+							key={idx}
+							className="border-r border-bone/10"
+							animate={{ opacity: [0.2, 0.6, 0.25] }}
+							transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: idx * 0.4 }}
+						/>
+					))}
+				</div>
+				<div className="absolute bottom-3 left-4 font-mono text-[10px] uppercase tracking-[0.3em] text-bone/60">
+					Evidence Trace
+				</div>
+				<motion.div
+					className="absolute right-4 top-3 font-mono text-[10px] tracking-[0.35em] text-accent/70"
+					animate={{ opacity: [0.3, 0.8, 0.35] }}
+					transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+				>
+					v3.3
+				</motion.div>
+			</div>
+		);
+	}
+
 	if (variant === "pulse") {
 		return (
 			<div className="relative h-48 md:h-56 overflow-hidden border border-bone/10 bg-ink/70">

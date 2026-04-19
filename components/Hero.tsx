@@ -6,7 +6,6 @@ import DigitalClock from './DigitalClock'
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [glitchActive, setGlitchActive] = useState(false)
 
   const { scrollYProgress } = useScroll({
@@ -16,17 +15,6 @@ export default function Hero() {
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 120])
   const opacity = useTransform(scrollYProgress, [0, 0.6, 1], [1, 0.7, 0.15])
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 2
-      const y = (e.clientY / window.innerHeight - 0.5) * 2
-      setMousePosition({ x, y })
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
 
   useEffect(() => {
     // Frequent glitch effect - every 3-5 seconds
@@ -68,43 +56,25 @@ export default function Hero() {
               <h1
                 className="relative font-serif text-7xl md:text-8xl lg:text-[10rem] tracking-tight text-bone leading-none"
                 style={{
-                  textShadow:
-                    '0 0 12px rgba(120, 10, 15, 0.22), 0 0 18px rgba(35, 160, 190, 0.12)',
+                  textShadow: '0 0 14px rgba(139, 0, 0, 0.22)',
                 }}
               >
                 <span className="relative inline-block">
-                  {/* Base text with dollar sign */}
                   <span className={glitchActive ? 'opacity-90' : ''}>
                     <span className="text-accent">$</span>torm
                   </span>
 
-                  {/* Glitch layers - whole word */}
                   {glitchActive && (
                     <>
-                      {/* Red layer */}
                       <span
                         className="absolute inset-0 text-accent mix-blend-screen opacity-40"
-                        style={{
-                          transform: 'translate(3px, -2px)',
-                        }}
+                        style={{ transform: 'translate(3px, -2px)' }}
                       >
                         <span className="text-accent">$</span>torm
                       </span>
-                      {/* Cyan/white layer */}
                       <span
-                        className="absolute inset-0 text-cyan-400 mix-blend-screen opacity-30"
-                        style={{
-                          transform: 'translate(-3px, 2px)',
-                        }}
-                      >
-                        <span className="text-cyan-400">$</span>torm
-                      </span>
-                      {/* Additional offset for more chaos */}
-                      <span
-                        className="absolute inset-0 text-bone mix-blend-screen opacity-20"
-                        style={{
-                          transform: 'translate(-1px, -3px)',
-                        }}
+                        className="absolute inset-0 text-bone mix-blend-screen opacity-25"
+                        style={{ transform: 'translate(-2px, 2px)' }}
                       >
                         <span className="text-bone">$</span>torm
                       </span>
@@ -113,7 +83,6 @@ export default function Hero() {
                 </span>
               </h1>
 
-              {/* Thin trace lines */}
               <motion.div
                 className="absolute -bottom-3 left-0 h-px bg-accent origin-left w-36"
                 initial={{ scaleX: 0 }}
@@ -121,7 +90,7 @@ export default function Hero() {
                 transition={{ delay: 1.5, duration: 1.5, ease: [0.43, 0.13, 0.23, 0.96] }}
               />
               <motion.div
-                className="absolute -bottom-4 left-0 h-px bg-cyan-400/20 origin-left w-16"
+                className="absolute -bottom-4 left-0 h-px bg-bone/15 origin-left w-16"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ delay: 1.7, duration: 1.6, ease: [0.43, 0.13, 0.23, 0.96] }}
@@ -208,14 +177,16 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
-        <motion.div
+        <motion.a
+          href="#projects"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.6 }}
           transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-12 left-12 flex flex-col items-start gap-3"
+          whileHover={{ opacity: 1 }}
+          className="absolute bottom-12 left-12 flex flex-col items-start gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-4 focus-visible:ring-offset-ink"
+          aria-label="Descend to archive"
         >
-          <span className="font-grotesk text-xs text-bone/30 tracking-widest">
+          <span className="font-grotesk text-xs text-bone/40 tracking-widest group-hover:text-bone transition-colors">
             DESCEND
           </span>
           <motion.div
@@ -225,9 +196,9 @@ export default function Hero() {
               repeat: Infinity,
               ease: 'easeInOut',
             }}
-            className="w-px h-12 bg-gradient-to-b from-bone/20 to-transparent"
+            className="w-px h-12 bg-gradient-to-b from-bone/30 to-transparent"
           />
-        </motion.div>
+        </motion.a>
       </motion.div>
 
     </section>

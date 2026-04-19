@@ -1,6 +1,7 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
+import Image from 'next/image'
 import { useRef } from 'react'
 
 type Project = {
@@ -16,11 +17,56 @@ type Project = {
   url?: string
   details?: string[]
   actions?: string[]
+  feature?: {
+    label: string
+    caption: string
+    images: {
+      src: string
+      alt: string
+    }[]
+  }
 }
 
 const projects: Project[] = [
   {
     id: '001',
+    title: 'RugBurn',
+    type: 'Live Risk Intelligence',
+    year: '2026',
+    status: 'Live',
+    symbol: 'eye',
+    aura: 'Aura: Mint evidence / Holder pressure / Agent guardrail',
+    description:
+      'Solana-native token-risk intelligence for traders, communities, developers, and agentic workflows.',
+    tags: ['Solana', 'Risk Intelligence', 'API/MCP', 'Telegram'],
+    url: '/case-studies/rugburn',
+    details: [
+      'Evidence-first scans expose liquidity, authority, holders, deployers, market stress, and confidence.',
+      'Hard caps prevent false safety when concentration, maturity, or missing evidence makes a token structurally unsafe.',
+      'Dashboard, API, Telegram, Discord, MCP, admin control, quota tracking, and calibration live around the scanner.',
+    ],
+    actions: ['Read case study', 'Live product surface', 'Built end to end'],
+    feature: {
+      label: 'Campaign evidence',
+      caption: 'Flyers as launch artifacts, not decoration.',
+      images: [
+        {
+          src: '/case-studies/rugburn/rugburn flyer.jpg',
+          alt: 'RugBurn campaign banner with Solana token-risk intelligence messaging',
+        },
+        {
+          src: '/case-studies/rugburn/rugburn flyer 3.jpg',
+          alt: 'RugBurn product flyer focused on token safety intelligence',
+        },
+        {
+          src: '/case-studies/rugburn/rugburn flyer 4.jpg',
+          alt: 'RugBurn campaign flyer showing the live product identity',
+        },
+      ],
+    },
+  },
+  {
+    id: '002',
     title: 'Nakupenda',
     type: 'Design Exploration',
     year: '2026',
@@ -37,7 +83,7 @@ const projects: Project[] = [
     ],
   },
   {
-    id: '002',
+    id: '003',
     title: 'Rasman',
     type: 'Music Portfolio',
     year: '2025',
@@ -53,7 +99,7 @@ const projects: Project[] = [
     ],
   },
   {
-    id: '003',
+    id: '004',
     title: 'Bleenk',
     type: 'Active System',
     year: '2026',
@@ -71,7 +117,7 @@ const projects: Project[] = [
     ],
   },
   {
-    id: '004',
+    id: '005',
     title: 'Dash NG Shop',
     type: 'Live System',
     year: '2025',
@@ -87,7 +133,7 @@ const projects: Project[] = [
     ],
   },
   {
-    id: '005',
+    id: '006',
     title: 'Pearl',
     type: 'System Suite',
     year: '2025',
@@ -103,7 +149,7 @@ const projects: Project[] = [
     ],
   },
   {
-    id: '006',
+    id: '007',
     title: 'Sleep Surveillance',
     type: 'Pending Build',
     year: '2026',
@@ -164,7 +210,7 @@ function ProjectCard({
                 href={project.url}
                 target={project.url.startsWith('http') ? '_blank' : undefined}
                 rel={project.url.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="block"
+                className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-4 focus-visible:ring-offset-ink"
                 whileHover={{ x: 4 }}
                 transition={{ duration: 0.3 }}
               >
@@ -235,9 +281,65 @@ function ProjectCard({
             {project.description}
           </p>
 
+          {project.feature ? (
+            <div className="max-w-5xl pt-3">
+              <div className="mb-3 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+                <p className="font-grotesk text-xs uppercase tracking-[0.3em] text-accent/80">
+                  {project.feature.label}
+                </p>
+                <p className="font-grotesk text-xs text-bone/40">
+                  {project.feature.caption}
+                </p>
+              </div>
+
+              <div className="grid gap-3 md:grid-cols-[1.35fr_0.65fr]">
+                <a
+                  href={project.url}
+                  className="group/media relative block aspect-[16/9] overflow-hidden border border-bone/10 bg-charcoal/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-4 focus-visible:ring-offset-ink"
+                  aria-label={`Open ${project.title} case study`}
+                >
+                  <Image
+                    src={project.feature.images[0].src}
+                    alt={project.feature.images[0].alt}
+                    width={4800}
+                    height={2700}
+                    loading="eager"
+                    sizes="(min-width: 768px) 58vw, 88vw"
+                    className="h-full w-full object-cover opacity-80 transition duration-500 group-hover/media:scale-[1.02] group-hover/media:opacity-100"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-3 font-mono text-[11px] uppercase tracking-[0.25em] text-bone/70">
+                    Live scan dossier
+                  </div>
+                </a>
+
+                <div className="grid grid-cols-2 gap-3 md:grid-cols-1">
+                  {project.feature.images.slice(1).map((image, imageIndex) => (
+                    <a
+                      key={image.src}
+                      href={project.url}
+                      className="group/media relative block aspect-[16/9] overflow-hidden border border-bone/10 bg-charcoal/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-4 focus-visible:ring-offset-ink"
+                      aria-label={`Open ${project.title} case study artifact ${imageIndex + 2}`}
+                    >
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        width={4800}
+                        height={2700}
+                        sizes="(min-width: 768px) 26vw, 44vw"
+                        className="h-full w-full object-cover opacity-70 transition duration-500 group-hover/media:scale-[1.03] group-hover/media:opacity-100"
+                      />
+                      <div className="absolute inset-0 bg-ink/10" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : null}
+
           {project.details ? (
             <details className="group/details max-w-2xl">
-              <summary className="cursor-pointer list-none font-grotesk text-xs uppercase tracking-[0.3em] text-bone/40 hover:text-bone/60 transition-colors">
+              <summary className="cursor-pointer list-none font-grotesk text-xs uppercase tracking-[0.3em] text-bone/40 transition-colors hover:text-bone/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-4 focus-visible:ring-offset-ink">
                 More
               </summary>
               <div className="mt-3 space-y-2 text-sm text-bone/60">
