@@ -3,17 +3,21 @@ import { SiDiscord, SiGithub, SiTelegram, SiWhatsapp, SiX } from "react-icons/si
 import { profile } from "@/content/profile"
 
 const socialLinks = [
-  { label: "GitHub", href: profile.links.github, Icon: SiGithub },
-  { label: "Discord", href: profile.links.discord, Icon: SiDiscord },
-  { label: "X", href: profile.links.x, Icon: SiX },
-  { label: "Telegram", href: profile.links.telegram, Icon: SiTelegram },
-  { label: "WhatsApp", href: profile.links.whatsapp, Icon: SiWhatsapp },
+  { id: "github", label: "GitHub", href: profile.links.github, Icon: SiGithub },
+  { id: "discord", label: "Discord", href: profile.links.discord, Icon: SiDiscord },
+  { id: "x", label: "X", href: profile.links.x, Icon: SiX },
+  { id: "telegram", label: "Telegram", href: profile.links.telegram, Icon: SiTelegram },
+  { id: "whatsapp", label: "WhatsApp", href: profile.links.whatsapp, Icon: SiWhatsapp },
 ] as const
 
-export default function SocialLinks({ compact = false }: { compact?: boolean }) {
+type SocialChannel = (typeof socialLinks)[number]["id"]
+
+export default function SocialLinks({ compact = false, channels }: { compact?: boolean; channels?: readonly SocialChannel[] }) {
+  const visibleLinks = channels ? socialLinks.filter(({ id }) => channels.includes(id)) : socialLinks
+
   return (
     <div className={`social-links${compact ? " social-links-compact" : ""}`} aria-label="Social profiles">
-      {socialLinks.map(({ label, href, Icon }) => {
+      {visibleLinks.map(({ label, href, Icon }) => {
         const content = (
           <>
             <Icon aria-hidden="true" />

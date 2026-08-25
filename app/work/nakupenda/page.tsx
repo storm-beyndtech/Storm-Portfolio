@@ -91,6 +91,19 @@ export default function NakupendaCaseStudy() {
 
       <CaseStudySection index="03" title="Live audio is a role system, not a single screen." eyebrow="Whispers / realtime state">
         <p>Whispers models ephemeral live rooms with explicit transitions between host, co-host, speaker, and listener. The UI separates moderation, stage control, speaking requests, gifting, listener rewards, and session retention.</p>
+        <figure className="state-flow">
+          <figcaption>Whispers speaking-state transition</figcaption>
+          <div>
+            <span><small>Default</small><strong>Listener</strong></span>
+            <i aria-hidden="true">request to speak →</i>
+            <span><small>Queue</small><strong>Pending review</strong></span>
+            <i aria-hidden="true">host / co-host approves →</i>
+            <span data-tone="positive"><small>Stage</small><strong>Speaker</strong></span>
+            <i aria-hidden="true">demote →</i>
+            <span><small>Return</small><strong>Listener</strong></span>
+          </div>
+          <p>Listeners can subscribe to room state, but publishing audio remains blocked until the role transition is approved.</p>
+        </figure>
         <div className="table-shell" role="region" aria-label="Whispers role matrix" tabIndex={0}>
           <table>
             <thead><tr><th>Role</th><th>Voice</th><th>Moderation</th><th>Rewards</th><th>Retention</th></tr></thead>
@@ -159,7 +172,7 @@ export default function NakupendaCaseStudy() {
         </div>
       </CaseStudySection>
 
-      <CaseStudyNext label="Return / index" title="All selected work" href="/work" />
+      <CaseStudyNext label="Next / archive" title="Dash NG Shop" href="/work/dash" />
     </main>
   )
 }

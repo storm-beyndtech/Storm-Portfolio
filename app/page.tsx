@@ -1,4 +1,3 @@
-import Link from "next/link"
 import ContactSection from "@/components/home/ContactSection"
 import EvidenceRail from "@/components/home/EvidenceRail"
 import HeroPanel from "@/components/home/HeroPanel"
@@ -18,10 +17,10 @@ export default function Home() {
           <p className="hero-description">{profile.description}</p>
           <div className="hero-actions">
             <a className="primary-button" href="#work">See proof of work <span aria-hidden="true">↓</span></a>
-            <Link className="secondary-button" href="/contact?intent=role">Contact Victor <span aria-hidden="true">↗</span></Link>
+            <a className="secondary-button" href={profile.resume} target="_blank" rel="noreferrer">Résumé <span aria-hidden="true">↗</span></a>
           </div>
           <div className="hero-connect">
-            <SocialLinks />
+            <SocialLinks channels={["github", "x"]} />
             <p className="availability"><span aria-hidden="true" />{profile.availability}</p>
           </div>
         </div>

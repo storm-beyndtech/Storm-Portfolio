@@ -1,6 +1,23 @@
 "use client"
 
+import { useEffect, useState } from "react"
+
 export default function ThemeToggle() {
+  const [theme, setTheme] = useState<"light" | "dark">("light")
+
+  useEffect(() => {
+    const root = document.documentElement
+    const syncTheme = () => setTheme(root.dataset.theme === "dark" ? "dark" : "light")
+    const frame = window.requestAnimationFrame(syncTheme)
+    const observer = new MutationObserver(syncTheme)
+    observer.observe(root, { attributes: true, attributeFilter: ["data-theme"] })
+
+    return () => {
+      window.cancelAnimationFrame(frame)
+      observer.disconnect()
+    }
+  }, [])
+
   function toggleTheme() {
     const root = document.documentElement
     const current = root.dataset.theme === "light" ? "light" : "dark"
@@ -8,14 +25,17 @@ export default function ThemeToggle() {
     root.dataset.theme = next
     root.style.colorScheme = next
     localStorage.setItem("storm-theme", next)
+    setTheme(next)
   }
+
+  const label = theme === "light" ? "Switch to dark mode" : "Switch to light mode"
 
   return (
     <button
       type="button"
       className="icon-button theme-toggle"
-      aria-label="Toggle color theme"
-      title="Toggle color theme"
+      aria-label={label}
+      title={label}
       onClick={toggleTheme}
     >
       <svg className="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">

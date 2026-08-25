@@ -27,8 +27,9 @@ export const navigation = [
   { label: "About", href: "/about" },
 ] as const
 export const evidence = [
-  { value: "LIVE", label: "Forensic intelligence product" },
-  { value: "GO + TS", label: "Backend to product interface" },
-  { value: "API + MCP", label: "Human and agent surfaces" },
-  { value: "SOLO-BUILT", label: "Product, system, and operations" },
+  // Rounded down from live production aggregates verified on 2026-08-26.
+  { value: "32K+", label: "Forensic scans" },
+  { value: "15K", label: "Current deployer cohort records" },
+  { value: "GO + TS", label: "Worker to product interface" },
+  { value: "API · MCP · BOTS", label: "Human and agent surfaces" },
 ] as const

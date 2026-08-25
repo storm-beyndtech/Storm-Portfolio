@@ -31,7 +31,11 @@ export const flagshipProjects: readonly Project[] = [
     thesis:
       "Behavioral risk infrastructure that turns attribution, funding topology, market evidence, and uncertainty into an inspectable decision surface.",
     ownership: "Solo product, architecture, Go worker, frontend, data, API/MCP, bots, and operations.",
-    proof: ["Production Go scanning system", "Public read-only API and MCP"],
+    proof: [
+      "32K+ scan corpus; 15K current deployer cohort records",
+      "Attribution, funding topology, Atlas, and public Augury records",
+      "Dashboard, API, MCP, Telegram, and Discord surfaces",
+    ],
     technologies: ["Go", "Next.js", "PostgreSQL", "Solana", "MCP"],
   },
   {
@@ -73,19 +77,25 @@ export const archiveProjects = [
     name: "Dash NG Shop",
     type: "Commerce operations",
     summary: "Multi-role inventory, payment, and staff coordination system.",
+    href: "/work/dash",
   },
   {
     id: "rasman",
     name: "Rasman",
     type: "Music commerce",
     summary: "Direct-to-listener publishing, playback, payments, and controlled delivery.",
+    href: "/work/rasman",
   },
   {
-    id: "pearl",
+    id: "pearlcity",
     name: "Pearlcity",
     type: "Education platform",
     summary: "Learning and opportunity surfaces for a practical technology community.",
+    href: "/work/pearlcity",
   },
+] as const
+
+export const earlyProjects = [
   {
     id: "bleenk",
     name: "Bleenk",

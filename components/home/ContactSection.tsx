@@ -11,7 +11,7 @@ export default function ContactSection() {
         </div>
         <div className="contact-copy">
           <p>I’m available for select remote engineering, product systems, and founding-team roles.</p>
-          <Link className="primary-button" href="/contact?intent=project">Start a conversation <span aria-hidden="true">↗</span></Link>
+          <Link className="primary-button" href="/contact?intent=role">Start a conversation <span aria-hidden="true">↗</span></Link>
           <SocialLinks compact />
         </div>
       </div>

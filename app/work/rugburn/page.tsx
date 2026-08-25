@@ -3,6 +3,7 @@ import CaseStudyHero from "@/components/work/CaseStudyHero"
 import CaseStudyNext from "@/components/work/CaseStudyNext"
 import CaseStudySection from "@/components/work/CaseStudySection"
 import EvidenceMetric from "@/components/work/EvidenceMetric"
+import ProductEvidenceFrame from "@/components/work/ProductEvidenceFrame"
 import SystemDiagram from "@/components/work/SystemDiagram"
 import SystemNote from "@/components/work/SystemNote"
 
@@ -40,10 +41,10 @@ export default function RugBurnCaseStudy() {
       />
 
       <div className="case-evidence-grid">
-        <EvidenceMetric value="LIVE" label="Production product" detail="Human and machine-facing surfaces" />
-        <EvidenceMetric value="GO" label="Scanning engine" detail="Provider orchestration and evidence collection" />
-        <EvidenceMetric value="API + MCP" label="Public read surfaces" detail="Read-only agent access with scoped keys" />
-        <EvidenceMetric value="BOTS" label="Community access" detail="Telegram and Discord scan workflows" />
+        <EvidenceMetric value="32K+" label="Forensic scans" detail="Live corpus, rounded down" />
+        <EvidenceMetric value="15K" label="Deployer cohort" detail="Current bounded working set" />
+        <EvidenceMetric value="GO + TS" label="Production system" detail="Worker through product interface" />
+        <EvidenceMetric value="API · MCP · BOTS" label="Access surfaces" detail="Human and agent workflows" />
       </div>
 
       <CaseStudySection index="01" title="The first model was too structural." eyebrow="Context / failure">
@@ -69,6 +70,41 @@ export default function RugBurnCaseStudy() {
       <CaseStudySection index="03" title="A layered forensic system." eyebrow="Architecture">
         <SystemDiagram label="Current public architecture, simplified" nodes={architecture} />
         <p className="diagram-caveat">This diagram deliberately omits proprietary scoring policy, calibration thresholds, and private operational controls.</p>
+        <div className="product-evidence-stack">
+          <ProductEvidenceFrame
+            label="Source-backed surface / Forge"
+            title="Scan evidence moves from intake to an inspectable assessment."
+            status="Production"
+            items={[
+              { label: "01 / Intake", value: "Subject resolved", detail: "Token, wallet, or deployer enters a shared evidence path.", tone: "positive" },
+              { label: "02 / Evidence", value: "Known · degraded", detail: "Provider facts retain source and coverage state.", tone: "warning" },
+              { label: "03 / Assessment", value: "Why remains visible", detail: "Risk and confidence are presented as separate concepts." },
+            ]}
+            note="Forge proves that the product exposes the path from evidence collection to a bounded conclusion, including degraded coverage."
+          />
+          <ProductEvidenceFrame
+            label="Source-backed surface / Atlas"
+            title="Funding topology is useful only after infrastructure is excluded."
+            status="Production direction"
+            items={[
+              { label: "Subject", value: "Deployer", detail: "The visible launch identity starts the investigation." },
+              { label: "Evidence edge", value: "Funding relation", detail: "A relationship carries provenance and confidence, not visual coincidence.", tone: "positive" },
+              { label: "Boundary", value: "Shared rail excluded", detail: "Known exchange and provider infrastructure is contextualized.", tone: "warning" },
+            ]}
+            note="Atlas proves the attribution decision: relationship edges are qualified before they become operator evidence."
+          />
+          <ProductEvidenceFrame
+            label="Source-backed surface / Augury"
+            title="A claim remains attached to its eventual outcome."
+            status="Emerging public corpus"
+            items={[
+              { label: "T-0", value: "Call recorded", detail: "The initial assessment is fixed before resolution." },
+              { label: "Integrity", value: "Hash chained", detail: "A record cannot quietly forget an earlier claim.", tone: "positive" },
+              { label: "Resolution", value: "Standing · fulfilled · broken · void", detail: "Misses and unresolved states stay explicit.", tone: "warning" },
+            ]}
+            note="Augury proves the accountability decision: the product preserves the original call and the result instead of displaying only wins."
+          />
+        </div>
       </CaseStudySection>
 
       <CaseStudySection index="04" title="Attribution is where the system earns trust." eyebrow="Key decisions">

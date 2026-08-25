@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { archiveProjects } from "@/content/projects"
+import { archiveProjects, earlyProjects } from "@/content/projects"
 
 export default function Range() {
   return (
@@ -15,8 +15,15 @@ export default function Range() {
       </div>
       <div className="range-list">
         {archiveProjects.map((project, index) => (
-          <div key={project.id}>
+          <Link key={project.id} href={project.href}>
             <span>0{index + 1}</span>
+            <strong>{project.name}</strong>
+            <small>{project.type} <span aria-hidden="true">↗</span></small>
+          </Link>
+        ))}
+        {earlyProjects.map((project, index) => (
+          <div key={project.id}>
+            <span>0{archiveProjects.length + index + 1}</span>
             <strong>{project.name}</strong>
             <small>{project.type}</small>
           </div>

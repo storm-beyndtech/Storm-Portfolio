@@ -3,6 +3,7 @@ import CaseStudyHero from "@/components/work/CaseStudyHero"
 import CaseStudyNext from "@/components/work/CaseStudyNext"
 import CaseStudySection from "@/components/work/CaseStudySection"
 import EvidenceMetric from "@/components/work/EvidenceMetric"
+import ProductEvidenceFrame from "@/components/work/ProductEvidenceFrame"
 import SystemDiagram from "@/components/work/SystemDiagram"
 import SystemNote from "@/components/work/SystemNote"
 
@@ -39,10 +40,10 @@ export default function VoidCaseStudy() {
       />
 
       <div className="case-evidence-grid">
-        <EvidenceMetric value="GO" label="Route prototype" detail="POST /v1/route with ranked fallbacks" />
-        <EvidenceMetric value="RLS" label="Workspace boundary" detail="Supabase auth and row policies" />
+        <EvidenceMetric value="GO" label="Deterministic evaluator" detail="Typed route request and response" />
+        <EvidenceMetric value="RANK + FALLBACK" label="Decision output" detail="Winner plus ordered alternatives" />
         <EvidenceMetric value="LIVE / MOCK" label="Source honesty" detail="Runtime references separated from fallback data" />
-        <EvidenceMetric value="NO CUSTODY" label="Explicit boundary" detail="No claim that VŒID holds customer funds" />
+        <EvidenceMetric value="SHADOW" label="Execution posture" detail="Recommendation without money movement" />
       </div>
 
       <CaseStudySection index="01" title="Routing is a decision problem." eyebrow="Context / stakes">
@@ -69,6 +70,41 @@ export default function VoidCaseStudy() {
           <article><span>Product shell</span><h3>One workspace truth.</h3><p>Next.js provides the public and product shell. Supabase supplies sessions, workspace setup, memberships, and row-level access policies.</p></article>
           <article><span>Reference layer</span><h3>Live data with visible fallback.</h3><p>The dashboard can request FX and stablecoin references, but marks fallback values as mock when a provider is unavailable.</p></article>
           <article><span>Operational rooms</span><h3>Builder and operator views.</h3><p>Separate rooms share the same route vocabulary: request packet, ranking result, fallback posture, and proof envelope.</p></article>
+        </div>
+        <div className="product-evidence-stack">
+          <ProductEvidenceFrame
+            label="Prototype interface / Builder room"
+            title="A request becomes a stable, inspectable contract."
+            status="Implemented prototype"
+            items={[
+              { label: "Request", value: "Corridor · amount · mode", detail: "The evaluator receives explicit intent and constraints." },
+              { label: "Response", value: "Winner · fallbacks", detail: "The result keeps alternatives alongside the first choice.", tone: "positive" },
+              { label: "Context", value: "Decision time · posture", detail: "Downstream operators receive explanation fields, not only an ID." },
+            ]}
+            note="The Builder room proves that ranking is exposed through one explicit request and response vocabulary."
+          />
+          <ProductEvidenceFrame
+            label="Prototype interface / Operator room"
+            title="The next valid route survives alongside the winner."
+            status="Shadow mode"
+            items={[
+              { label: "Recommended", value: "Candidate A", detail: "Highest-ranked path for the supplied constraints.", tone: "positive" },
+              { label: "Fallback 01", value: "Candidate B", detail: "Ordered recovery path if the preferred rail degrades." },
+              { label: "Posture", value: "Recommend only", detail: "The current system does not execute or custody funds.", tone: "warning" },
+            ]}
+            note="The Operator room proves that recovery and human control are normal route state, not an afterthought. Candidate names are intentionally generic because production providers are not connected."
+          />
+          <ProductEvidenceFrame
+            label="Prototype interface / Source state"
+            title="Reference provenance stays visible when live data falls back."
+            status="Implemented boundary"
+            items={[
+              { label: "Reference", value: "Live", detail: "A runtime provider supplied the current value.", tone: "positive" },
+              { label: "Fallback", value: "Mock", detail: "A fixture is displayed only with an explicit source label.", tone: "warning" },
+              { label: "Candidate factors", value: "Fee · timing · posture", detail: "Comparable factors feed the deterministic evaluator." },
+            ]}
+            note="The source state proves that prototype fixtures are not presented as live market or traction evidence."
+          />
         </div>
       </CaseStudySection>
 
