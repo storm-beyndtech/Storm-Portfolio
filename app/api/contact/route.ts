@@ -1,150 +1,95 @@
-import { NextRequest, NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
+import { NextRequest, NextResponse } from "next/server"
+import nodemailer from "nodemailer"
+
+const MAX_NAME_LENGTH = 120
+const MAX_MESSAGE_LENGTH = 6000
+
+function escapeHtml(value: string) {
+  return value.replace(/[&<>'"]/g, (character) => {
+    const entities: Record<string, string> = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "'": "&#39;",
+      '"': "&quot;",
+    }
+    return entities[character]
+  })
+}
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { name, email, message } = body
+    const contentType = request.headers.get("content-type") ?? ""
+    if (!contentType.includes("application/json")) {
+      return NextResponse.json({ error: "Expected a JSON request." }, { status: 415 })
+    }
 
-    // Validation
+    const body = (await request.json()) as Record<string, unknown>
+    const name = typeof body.name === "string" ? body.name.trim() : ""
+    const email = typeof body.email === "string" ? body.email.trim() : ""
+    const message = typeof body.message === "string" ? body.message.trim() : ""
+
     if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: "Name, email, and message are required." }, { status: 400 })
     }
 
-    // Email validation
+    if (name.length > MAX_NAME_LENGTH || message.length > MAX_MESSAGE_LENGTH) {
+      return NextResponse.json({ error: "The message is too long." }, { status: 400 })
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(email) || email.length > 254) {
+      return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 })
+    }
+
+    const smtpUser = process.env.EMAIL_USER
+    const smtpPass = process.env.EMAIL_PASS
+    const recipient = process.env.EMAIL_TO ?? smtpUser
+
+    if (!smtpUser || !smtpPass || !recipient) {
+      console.error("Portfolio contact email is not configured.")
       return NextResponse.json(
-        { error: 'Invalid email address' },
-        { status: 400 }
+        { error: "Email delivery is temporarily unavailable. Contact Storm directly by email." },
+        { status: 503 },
       )
     }
 
-    // Create transporter with Hostinger SMTP
     const transporter = nodemailer.createTransport({
-      host: 'smtp.hostinger.com',
-      port: 465,
-      secure: true, // Use SSL
-      auth: {
-        user: process.env.EMAIL_USER || 'team@beyndtech.com',
-        pass: process.env.EMAIL_PASS || '3099545689Vv++',
-      },
+      host: process.env.EMAIL_HOST ?? "smtp.hostinger.com",
+      port: Number(process.env.EMAIL_PORT ?? 465),
+      secure: process.env.EMAIL_SECURE !== "false",
+      auth: { user: smtpUser, pass: smtpPass },
     })
 
-    // Email to yourself
-    const mailOptions = {
-      from: process.env.EMAIL_USER || 'team@beyndtech.com',
-      to: process.env.EMAIL_TO || 'storm@beyndtech.com',
-      subject: `Portfolio Contact: ${name}`,
+    const safeName = escapeHtml(name)
+    const safeEmail = escapeHtml(email)
+    const safeMessage = escapeHtml(message).replace(/\n/g, "<br>")
+    const safeSubjectName = name.replace(/[\r\n]/g, " ")
+
+    await transporter.sendMail({
+      from: `Storm Portfolio <${smtpUser}>`,
+      to: recipient,
+      replyTo: email,
+      subject: `Portfolio contact: ${safeSubjectName}`,
       html: `
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <style>
-              body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                background-color: #0a0a0a;
-                color: #f4f4f0;
-                padding: 40px 20px;
-                margin: 0;
-              }
-              .container {
-                max-width: 600px;
-                margin: 0 auto;
-                background: #1a1a1a;
-                border: 1px solid rgba(244, 244, 240, 0.1);
-                padding: 40px;
-              }
-              .header {
-                border-bottom: 2px solid #8b0000;
-                padding-bottom: 20px;
-                margin-bottom: 30px;
-              }
-              .header h1 {
-                margin: 0;
-                font-size: 24px;
-                color: #f4f4f0;
-                font-weight: 400;
-              }
-              .label {
-                font-size: 11px;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                color: rgba(244, 244, 240, 0.4);
-                margin-bottom: 8px;
-                font-family: monospace;
-              }
-              .value {
-                font-size: 16px;
-                color: #f4f4f0;
-                margin-bottom: 24px;
-                line-height: 1.6;
-              }
-              .message-box {
-                background: rgba(244, 244, 240, 0.03);
-                border-left: 3px solid #8b0000;
-                padding: 20px;
-                margin-top: 20px;
-              }
-              .footer {
-                margin-top: 40px;
-                padding-top: 20px;
-                border-top: 1px solid rgba(244, 244, 240, 0.1);
-                font-size: 12px;
-                color: rgba(244, 244, 240, 0.3);
-              }
-            </style>
-          </head>
-          <body>
-            <div class="container">
-              <div class="header">
-                <h1>New Portfolio Contact</h1>
-              </div>
-
-              <div class="label">&gt; Name</div>
-              <div class="value">${name}</div>
-
-              <div class="label">&gt; Email</div>
-              <div class="value"><a href="mailto:${email}" style="color: #8b0000; text-decoration: none;">${email}</a></div>
-
-              <div class="label">&gt; Message</div>
-              <div class="message-box">
-                <div class="value">${message.replace(/\n/g, '<br>')}</div>
-              </div>
-
-              <div class="footer">
-                Sent from your portfolio contact form
-              </div>
-            </div>
-          </body>
-        </html>
+        <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto;padding:32px;color:#24211f;background:#f5f0e7">
+          <p style="font:12px monospace;letter-spacing:.12em;text-transform:uppercase;color:#81786f">New portfolio contact</p>
+          <h1 style="font-size:24px;margin:18px 0 28px">${safeName}</h1>
+          <p style="font:12px monospace;color:#81786f">EMAIL</p>
+          <p><a href="mailto:${safeEmail}" style="color:#8e3528">${safeEmail}</a></p>
+          <p style="font:12px monospace;color:#81786f;margin-top:28px">MESSAGE</p>
+          <p style="line-height:1.7">${safeMessage}</p>
+        </div>
       `,
-      text: `
-New Portfolio Contact
+      text: `New portfolio contact\n\nName: ${name}\nEmail: ${email}\n\n${message}`,
+    })
 
-Name: ${name}
-Email: ${email}
-
-Message:
-${message}
-      `,
-    }
-
-    // Send email
-    await transporter.sendMail(mailOptions)
-
-    return NextResponse.json(
-      { success: true, message: 'Message sent successfully' },
-      { status: 200 }
-    )
+    return NextResponse.json({ success: true, message: "Message sent." })
   } catch (error) {
-    console.error('Email error:', error)
+    console.error("Portfolio contact delivery failed:", error)
     return NextResponse.json(
-      { error: 'Failed to send message. Please try again.' },
-      { status: 500 }
+      { error: "Message delivery failed. Contact Storm directly by email." },
+      { status: 500 },
     )
   }
 }
