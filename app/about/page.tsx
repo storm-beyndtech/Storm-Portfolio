@@ -36,7 +36,7 @@ export default function AboutPage() {
         <div className="inline-actions">
           <Link className="primary-button" href="/work">Selected work <span aria-hidden="true">↗</span></Link>
           <a className="secondary-button" href={profile.resume} target="_blank" rel="noreferrer">Résumé <span aria-hidden="true">↗</span></a>
-          <a className="quiet-link" href={`mailto:${profile.email}`}>Email Victor</a>
+          <Link className="quiet-link" href="/contact?intent=role">Contact Victor</Link>
         </div>
       </section>
     </main>

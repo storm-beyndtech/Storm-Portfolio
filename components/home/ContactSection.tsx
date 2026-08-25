@@ -1,4 +1,5 @@
-import { profile } from "@/content/profile"
+import Link from "next/link"
+import SocialLinks from "@/components/site/SocialLinks"
 
 export default function ContactSection() {
   return (
@@ -10,13 +11,8 @@ export default function ContactSection() {
         </div>
         <div className="contact-copy">
           <p>I’m available for select remote engineering, product systems, and founding-team roles.</p>
-          <a className="primary-button" href={`mailto:${profile.email}`}>Email Victor <span aria-hidden="true">↗</span></a>
-          <div className="contact-links">
-            <a href={profile.links.github} target="_blank" rel="noreferrer">GitHub</a>
-            <a href={profile.resume} target="_blank" rel="noreferrer">Résumé</a>
-            <a href={profile.links.behance} target="_blank" rel="noreferrer">Behance</a>
-            <a href={profile.links.x} target="_blank" rel="noreferrer">X</a>
-          </div>
+          <Link className="primary-button" href="/contact?intent=project">Start a conversation <span aria-hidden="true">↗</span></Link>
+          <SocialLinks compact />
         </div>
       </div>
     </section>

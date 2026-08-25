@@ -10,7 +10,7 @@ export default function SiteFooter() {
           <p>{profile.role}</p>
         </div>
         <div className="footer-links" aria-label="Footer links">
-          <a href={`mailto:${profile.email}`}>Email</a>
+          <Link href="/contact">Contact</Link>
           <a href={profile.links.github} target="_blank" rel="noreferrer">GitHub</a>
           <Link href="/elsewhere">Elsewhere</Link>
         </div>

@@ -2,7 +2,18 @@ import { NextRequest, NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 
 const MAX_NAME_LENGTH = 120
+const MAX_COMPANY_LENGTH = 160
 const MAX_MESSAGE_LENGTH = 6000
+
+const intentLabels = {
+  role: "Hiring / full-time role",
+  project: "Contract / project work",
+  collaboration: "Product collaboration",
+  speaking: "Speaking / advisory",
+  other: "Something else",
+} as const
+
+type ContactIntent = keyof typeof intentLabels
 
 function escapeHtml(value: string) {
   return value.replace(/[&<>'"]/g, (character) => {
@@ -27,14 +38,25 @@ export async function POST(request: NextRequest) {
     const body = (await request.json()) as Record<string, unknown>
     const name = typeof body.name === "string" ? body.name.trim() : ""
     const email = typeof body.email === "string" ? body.email.trim() : ""
+    const company = typeof body.company === "string" ? body.company.trim() : ""
+    const intent = typeof body.intent === "string" ? body.intent.trim() : ""
     const message = typeof body.message === "string" ? body.message.trim() : ""
+    const website = typeof body.website === "string" ? body.website.trim() : ""
 
-    if (!name || !email || !message) {
-      return NextResponse.json({ error: "Name, email, and message are required." }, { status: 400 })
+    if (website) {
+      return NextResponse.json({ success: true, message: "Message sent." })
     }
 
-    if (name.length > MAX_NAME_LENGTH || message.length > MAX_MESSAGE_LENGTH) {
+    if (!name || !email || !intent || !message) {
+      return NextResponse.json({ error: "Name, email, reason, and message are required." }, { status: 400 })
+    }
+
+    if (name.length > MAX_NAME_LENGTH || company.length > MAX_COMPANY_LENGTH || message.length > MAX_MESSAGE_LENGTH) {
       return NextResponse.json({ error: "The message is too long." }, { status: 400 })
+    }
+
+    if (!(intent in intentLabels)) {
+      return NextResponse.json({ error: "Choose a valid reason for getting in touch." }, { status: 400 })
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -63,6 +85,8 @@ export async function POST(request: NextRequest) {
 
     const safeName = escapeHtml(name)
     const safeEmail = escapeHtml(email)
+    const safeCompany = escapeHtml(company || "Not provided")
+    const safeIntent = escapeHtml(intentLabels[intent as ContactIntent])
     const safeMessage = escapeHtml(message).replace(/\n/g, "<br>")
     const safeSubjectName = name.replace(/[\r\n]/g, " ")
 
@@ -70,18 +94,22 @@ export async function POST(request: NextRequest) {
       from: `Storm Portfolio <${smtpUser}>`,
       to: recipient,
       replyTo: email,
-      subject: `Portfolio contact: ${safeSubjectName}`,
+      subject: `Portfolio / ${intentLabels[intent as ContactIntent]} / ${safeSubjectName}`,
       html: `
         <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto;padding:32px;color:#24211f;background:#f5f0e7">
           <p style="font:12px monospace;letter-spacing:.12em;text-transform:uppercase;color:#81786f">New portfolio contact</p>
           <h1 style="font-size:24px;margin:18px 0 28px">${safeName}</h1>
+          <p style="font:12px monospace;color:#81786f">REASON</p>
+          <p>${safeIntent}</p>
+          <p style="font:12px monospace;color:#81786f;margin-top:28px">COMPANY / TEAM</p>
+          <p>${safeCompany}</p>
           <p style="font:12px monospace;color:#81786f">EMAIL</p>
           <p><a href="mailto:${safeEmail}" style="color:#8e3528">${safeEmail}</a></p>
           <p style="font:12px monospace;color:#81786f;margin-top:28px">MESSAGE</p>
           <p style="line-height:1.7">${safeMessage}</p>
         </div>
       `,
-      text: `New portfolio contact\n\nName: ${name}\nEmail: ${email}\n\n${message}`,
+      text: `New portfolio contact\n\nReason: ${intentLabels[intent as ContactIntent]}\nName: ${name}\nCompany / team: ${company || "Not provided"}\nEmail: ${email}\n\n${message}`,
     })
 
     return NextResponse.json({ success: true, message: "Message sent." })

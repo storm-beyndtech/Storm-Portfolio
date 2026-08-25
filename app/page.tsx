@@ -1,9 +1,11 @@
+import Link from "next/link"
 import ContactSection from "@/components/home/ContactSection"
 import EvidenceRail from "@/components/home/EvidenceRail"
+import HeroPanel from "@/components/home/HeroPanel"
 import Principles from "@/components/home/Principles"
 import Range from "@/components/home/Range"
 import SelectedWork from "@/components/home/SelectedWork"
-import SystemMap from "@/components/home/SystemMap"
+import SocialLinks from "@/components/site/SocialLinks"
 import { profile } from "@/content/profile"
 
 export default function Home() {
@@ -14,16 +16,16 @@ export default function Home() {
           <p className="eyebrow hero-eyebrow">Software engineer · Product designer</p>
           <h1 id="hero-title">Building high-trust systems under uncertainty.</h1>
           <p className="hero-description">{profile.description}</p>
-          <p className="technology-line">Go · TypeScript · React · PostgreSQL · Data systems · Product</p>
           <div className="hero-actions">
-            <a className="primary-button" href="#work">View selected work <span aria-hidden="true">↓</span></a>
-            <a className="secondary-button" href={profile.resume} target="_blank" rel="noreferrer">Résumé <span aria-hidden="true">↗</span></a>
-            <a className="quiet-link" href={profile.links.github} target="_blank" rel="noreferrer">GitHub</a>
-            <a className="quiet-link" href={`mailto:${profile.email}`}>Email</a>
+            <a className="primary-button" href="#work">See proof of work <span aria-hidden="true">↓</span></a>
+            <Link className="secondary-button" href="/contact?intent=role">Contact Victor <span aria-hidden="true">↗</span></Link>
           </div>
-          <p className="availability"><span aria-hidden="true" />{profile.availability}</p>
+          <div className="hero-connect">
+            <SocialLinks />
+            <p className="availability"><span aria-hidden="true" />{profile.availability}</p>
+          </div>
         </div>
-        <SystemMap />
+        <HeroPanel />
       </section>
 
       <div className="section-shell"><EvidenceRail /></div>

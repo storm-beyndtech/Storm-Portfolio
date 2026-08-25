@@ -49,7 +49,7 @@ export const viewport: Viewport = {
   ],
 }
 
-const themeScript = `(function(){try{var saved=localStorage.getItem('storm-theme');var theme=saved==='light'||saved==='dark'?saved:(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.dataset.theme=theme;document.documentElement.style.colorScheme=theme;}catch(_){}})();`
+const themeScript = `(function(){try{var saved=localStorage.getItem('storm-theme');var theme=saved==='light'||saved==='dark'?saved:'light';document.documentElement.dataset.theme=theme;document.documentElement.style.colorScheme=theme;}catch(_){document.documentElement.dataset.theme='light';}})();`
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const personJsonLd = {
@@ -60,7 +60,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     url: siteUrl,
     jobTitle: profile.role,
     email: `mailto:${profile.email}`,
-    sameAs: [profile.links.github, profile.links.behance, profile.links.x],
+    sameAs: [profile.links.github, profile.links.behance, profile.links.x, profile.links.telegram, profile.links.whatsapp].filter((url) => url.startsWith("http")),
     knowsAbout: ["Software engineering", "Product design", "Data systems", "Behavioral intelligence", "Financial systems"],
   }
 

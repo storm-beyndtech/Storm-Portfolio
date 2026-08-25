@@ -18,7 +18,7 @@ export default function SiteHeader() {
         </nav>
         <div className="header-actions">
           <ThemeToggle />
-          <a className="header-contact" href={`mailto:${profile.email}`}>Contact</a>
+          <Link className="header-contact" href="/contact?intent=role">Contact</Link>
           <MobileNavigation />
         </div>
       </div>

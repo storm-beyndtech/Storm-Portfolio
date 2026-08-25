@@ -34,7 +34,7 @@ Re-check these repositories before changing product claims. Never expose proprie
 
 ## Public identity
 
-Verified contact and profile links live in `content/profile.ts`. Do not add generic URL or email fallbacks.
+Verified contact and profile links are resolved in `content/profile.ts` from `NEXT_PUBLIC_*` deployment variables with reviewed public fallbacks. Missing Discord or Telegram URLs must route to the context-aware contact form, never to a fake profile.
 
 ## Verification
 

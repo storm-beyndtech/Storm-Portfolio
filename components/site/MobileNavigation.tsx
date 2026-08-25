@@ -38,9 +38,9 @@ export default function MobileNavigation() {
             <a href={profile.resume} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
               Résumé <span aria-hidden="true">↗</span>
             </a>
-            <a className="mobile-contact" href={`mailto:${profile.email}`} onClick={() => setOpen(false)}>
+            <Link className="mobile-contact" href="/contact?intent=role" onClick={() => setOpen(false)}>
               Contact
-            </a>
+            </Link>
           </nav>
         </div>
       ) : null}

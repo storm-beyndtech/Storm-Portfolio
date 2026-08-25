@@ -20,6 +20,7 @@ The active public experience does not load Three.js or Framer Motion. Those pack
 - `/work/void` financial decision infrastructure case study
 - `/work/nakupenda` social product systems case study
 - `/about` professional context
+- `/contact` context-aware contact form
 - `/elsewhere` writing, music, and visual work
 - `/Victor_Nwachukwu_CV_Senior.pdf` direct résumé asset
 
@@ -37,7 +38,7 @@ lib/                 Site URL resolution
 public/              Résumé, case-study evidence, and artwork
 ```
 
-Only `ThemeToggle` and `MobileNavigation` are client components in the active site shell. The homepage and case studies are Server Components.
+Client components are limited to the theme and mobile navigation controls, the hero carousel, and the contact form. The surrounding pages and case studies remain Server Components.
 
 ## Local development
 
@@ -57,10 +58,18 @@ npm start
 
 ## Environment
 
-Public identity links are deliberately stored as verified static content in `content/profile.ts`. Optional deployment configuration:
+Public identity links use deployment variables when provided and verified fallbacks otherwise:
 
 ```text
 NEXT_PUBLIC_SITE_URL=
+NEXT_PUBLIC_CONTACT_EMAIL=
+NEXT_PUBLIC_GITHUB_URL=
+NEXT_PUBLIC_DISCORD_URL=
+NEXT_PUBLIC_TWITTER_URL=
+NEXT_PUBLIC_TELEGRAM_URL=
+NEXT_PUBLIC_WHATSAPP_URL=
+NEXT_PUBLIC_BEHANCE_URL=
+NEXT_PUBLIC_BLOG_URL=
 EMAIL_HOST=
 EMAIL_PORT=
 EMAIL_SECURE=
@@ -71,7 +80,7 @@ EMAIL_TO=
 
 `NEXT_PUBLIC_SITE_URL` is preferred for canonical URLs. Vercel production URL variables are used when it is absent. Local development falls back to `http://localhost:3000`.
 
-The contact API requires SMTP credentials. It never ships a password or fake address fallback. The public site uses direct email links, so contact remains available even when SMTP is not configured.
+The contact API requires SMTP credentials and never ships a password fallback. All visible contact actions lead to the context-aware form; social channels remain available independently.
 
 ## Content rules
 
