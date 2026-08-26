@@ -8,7 +8,7 @@ export const profile = {
   availability: "Available for select remote engineering and product systems roles",
   location: "Lagos, Nigeria · Remote / global",
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "storm@beyndtech.com",
-  resume: "/Victor_Nwachukwu_CV_Senior.pdf",
+  resume: "/Victor_Nwachukwu_Software_Engineer.pdf",
   links: {
     github: process.env.NEXT_PUBLIC_GITHUB_URL?.trim() || "https://github.com/storm-beyndtech",
     discord: process.env.NEXT_PUBLIC_DISCORD_URL?.trim() || "/contact?intent=other&channel=discord",
