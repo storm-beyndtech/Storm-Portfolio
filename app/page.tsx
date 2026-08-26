@@ -5,6 +5,7 @@ import Principles from "@/components/home/Principles"
 import Range from "@/components/home/Range"
 import SelectedWork from "@/components/home/SelectedWork"
 import SocialLinks from "@/components/site/SocialLinks"
+import ArrowIcon from "@/components/site/ArrowIcon"
 import { profile } from "@/content/profile"
 
 export default function Home() {
@@ -16,8 +17,8 @@ export default function Home() {
           <h1 id="hero-title">Building high-trust systems under uncertainty.</h1>
           <p className="hero-description">{profile.description}</p>
           <div className="hero-actions">
-            <a className="primary-button" href="#work">See proof of work <span aria-hidden="true">↓</span></a>
-            <a className="secondary-button" href={profile.resume} target="_blank" rel="noreferrer">Résumé <span aria-hidden="true">↗</span></a>
+            <a className="primary-button" href="#work">See proof of work <ArrowIcon direction="down" /></a>
+            <a className="secondary-button" href={profile.resume} target="_blank" rel="noreferrer">Résumé <ArrowIcon /></a>
           </div>
           <div className="hero-connect">
             <SocialLinks channels={["github", "x"]} />

@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react"
 import { contactIntents } from "@/content/contact"
+import ArrowIcon from "@/components/site/ArrowIcon"
 
 type ContactFormProps = {
   initialIntent: string
@@ -80,7 +81,7 @@ export default function ContactForm({ initialIntent, initialMessage = "" }: Cont
       </label>
       <div className="form-submit-row">
         <button className="primary-button" type="submit" disabled={status.state === "sending"}>
-          {status.state === "sending" ? "Sending…" : "Send message"} <span aria-hidden="true">↗</span>
+          {status.state === "sending" ? "Sending…" : "Send message"} <ArrowIcon />
         </button>
         <p className={`form-status form-status-${status.state}`} aria-live="polite">
           {status.message || "Delivered directly to Victor. No mailing list."}

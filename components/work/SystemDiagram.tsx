@@ -1,3 +1,5 @@
+import ArrowIcon from "@/components/site/ArrowIcon"
+
 type DiagramNode = {
   label: string
   detail?: string
@@ -18,7 +20,7 @@ export default function SystemDiagram({ label, nodes }: SystemDiagramProps) {
             <span className="diagram-number">{String(index + 1).padStart(2, "0")}</span>
             <strong>{node.label}</strong>
             {node.detail ? <small>{node.detail}</small> : null}
-            {index < nodes.length - 1 ? <span className="diagram-arrow" aria-hidden="true">→</span> : null}
+            {index < nodes.length - 1 ? <span className="diagram-arrow" aria-hidden="true"><ArrowIcon direction="right" /></span> : null}
           </li>
         ))}
       </ol>

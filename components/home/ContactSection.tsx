@@ -1,5 +1,6 @@
 import Link from "next/link"
 import SocialLinks from "@/components/site/SocialLinks"
+import ArrowIcon from "@/components/site/ArrowIcon"
 
 export default function ContactSection() {
   return (
@@ -11,7 +12,7 @@ export default function ContactSection() {
         </div>
         <div className="contact-copy">
           <p>I’m available for select remote engineering, product systems, and founding-team roles.</p>
-          <Link className="primary-button" href="/contact?intent=role">Start a conversation <span aria-hidden="true">↗</span></Link>
+          <Link className="primary-button" href="/contact?intent=role">Start a conversation <ArrowIcon /></Link>
           <SocialLinks compact />
         </div>
       </div>

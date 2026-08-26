@@ -1,4 +1,5 @@
 import Link from "next/link"
+import ArrowIcon from "@/components/site/ArrowIcon"
 import { archiveProjects, earlyProjects } from "@/content/projects"
 
 export default function Range() {
@@ -9,8 +10,8 @@ export default function Range() {
         <h2 id="range-title">Different systems. Same care.</h2>
         <p>Commerce operations, music infrastructure, education products, writing, and visual work live here without competing with the flagship story.</p>
         <div className="inline-actions">
-          <Link className="text-link" href="/work">View work archive <span aria-hidden="true">↗</span></Link>
-          <Link className="quiet-link" href="/elsewhere">Enter elsewhere <span aria-hidden="true">↗</span></Link>
+          <Link className="text-link" href="/work">View work archive <ArrowIcon /></Link>
+          <Link className="quiet-link" href="/elsewhere">Enter elsewhere <ArrowIcon /></Link>
         </div>
       </div>
       <div className="range-list">
@@ -18,7 +19,7 @@ export default function Range() {
           <Link key={project.id} href={project.href}>
             <span>0{index + 1}</span>
             <strong>{project.name}</strong>
-            <small>{project.type} <span aria-hidden="true">↗</span></small>
+            <small>{project.type} <ArrowIcon /></small>
           </Link>
         ))}
         {earlyProjects.map((project, index) => (

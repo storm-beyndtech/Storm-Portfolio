@@ -1,4 +1,5 @@
 import Link from "next/link"
+import ArrowIcon from "@/components/site/ArrowIcon"
 import { flagshipProjects } from "@/content/projects"
 
 export default function SelectedWork() {
@@ -25,10 +26,10 @@ export default function SelectedWork() {
               <p className="project-problem">{project.problem}</p>
               <p className="project-thesis">{project.thesis}</p>
               <div className="project-actions">
-                <Link className="text-link" href={project.href}>Read system case study <span aria-hidden="true">↗</span></Link>
+                <Link className="text-link" href={project.href}>Read system case study <ArrowIcon /></Link>
                 {project.liveUrl ? (
                   <a className="quiet-link" href={project.liveUrl} target="_blank" rel="noreferrer">
-                    {project.liveLabel} <span aria-hidden="true">↗</span>
+                    {project.liveLabel} <ArrowIcon />
                   </a>
                 ) : null}
               </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import { profile } from "@/content/profile"
+import ArrowIcon from "@/components/site/ArrowIcon"
 
 export const metadata: Metadata = {
   title: "Elsewhere",
@@ -27,7 +28,7 @@ export default function ElsewherePage() {
         <a href={profile.links.writing} target="_blank" rel="noreferrer">
           <span>01 / Writing</span>
           <strong>Dystopian horror, systems, and field notes.</strong>
-          <small>Open writing archive ↗</small>
+          <small>Open writing archive <ArrowIcon /></small>
         </a>
         <div>
           <span>02 / Music</span>
@@ -37,7 +38,7 @@ export default function ElsewherePage() {
         <a href={profile.links.behance} target="_blank" rel="noreferrer">
           <span>03 / Visual work</span>
           <strong>Product design, art direction, and image systems.</strong>
-          <small>Open Behance ↗</small>
+          <small>Open Behance <ArrowIcon /></small>
         </a>
       </section>
 

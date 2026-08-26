@@ -2,7 +2,9 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import { FiMenu, FiX } from "react-icons/fi"
 import { navigation, profile } from "@/content/profile"
+import ArrowIcon from "@/components/site/ArrowIcon"
 
 export default function MobileNavigation() {
   const [open, setOpen] = useState(false)
@@ -25,7 +27,7 @@ export default function MobileNavigation() {
         onClick={() => setOpen((value) => !value)}
       >
         <span>{open ? "Close" : "Menu"}</span>
-        <span className="menu-glyph" aria-hidden="true">{open ? "×" : "≡"}</span>
+        <span className="menu-glyph" aria-hidden="true">{open ? <FiX /> : <FiMenu />}</span>
       </button>
       {open ? (
         <div id="mobile-menu" className="mobile-menu">
@@ -36,7 +38,7 @@ export default function MobileNavigation() {
               </Link>
             ))}
             <a href={profile.resume} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
-              Résumé <span aria-hidden="true">↗</span>
+              Résumé <ArrowIcon />
             </a>
             <Link className="mobile-contact" href="/contact?intent=role" onClick={() => setOpen(false)}>
               Contact

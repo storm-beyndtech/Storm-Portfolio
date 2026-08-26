@@ -6,6 +6,7 @@ import EvidenceMetric from "@/components/work/EvidenceMetric"
 import MediaFrame from "@/components/work/MediaFrame"
 import SystemDiagram from "@/components/work/SystemDiagram"
 import SystemNote from "@/components/work/SystemNote"
+import ArrowIcon from "@/components/site/ArrowIcon"
 
 export const metadata: Metadata = {
   title: "Nakupenda case study",
@@ -95,11 +96,11 @@ export default function NakupendaCaseStudy() {
           <figcaption>Whispers speaking-state transition</figcaption>
           <div>
             <span><small>Default</small><strong>Listener</strong></span>
-            <i aria-hidden="true">request to speak →</i>
+            <i aria-hidden="true">request to speak <ArrowIcon direction="right" /></i>
             <span><small>Queue</small><strong>Pending review</strong></span>
-            <i aria-hidden="true">host / co-host approves →</i>
+            <i aria-hidden="true">host / co-host approves <ArrowIcon direction="right" /></i>
             <span data-tone="positive"><small>Stage</small><strong>Speaker</strong></span>
-            <i aria-hidden="true">demote →</i>
+            <i aria-hidden="true">demote <ArrowIcon direction="right" /></i>
             <span><small>Return</small><strong>Listener</strong></span>
           </div>
           <p>Listeners can subscribe to room state, but publishing audio remains blocked until the role transition is approved.</p>

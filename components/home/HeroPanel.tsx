@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { flagshipProjects } from "@/content/projects"
 import { profile } from "@/content/profile"
+import ArrowIcon from "@/components/site/ArrowIcon"
 
 export default function HeroPanel() {
   const [active, setActive] = useState(0)
@@ -59,7 +60,7 @@ export default function HeroPanel() {
                   <span>{project.category}</span>
                 </div>
                 <Link href={project.href} tabIndex={project.index === flagshipProjects[active].index ? 0 : -1} aria-label={`Read the ${project.name} case study`}>
-                  ↗
+                  <ArrowIcon />
                 </Link>
               </article>
             ))}

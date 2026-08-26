@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import ArrowIcon from "@/components/site/ArrowIcon"
 import { archiveProjects, earlyProjects, flagshipProjects } from "@/content/projects"
 
 export const metadata: Metadata = {
@@ -29,7 +30,7 @@ export default function WorkPage() {
               <h2>{project.displayName}</h2>
             </div>
             <p>{project.thesis}</p>
-            <Link href={project.href} aria-label={`Read ${project.name} case study`}>Open case study <span aria-hidden="true">↗</span></Link>
+            <Link href={project.href} aria-label={`Read ${project.name} case study`}>Open case study <ArrowIcon /></Link>
           </article>
         ))}
       </section>
@@ -48,7 +49,7 @@ export default function WorkPage() {
               <span>0{index + 1}</span>
               <strong>{project.name}</strong>
               <small>{project.type}</small>
-              <p>{project.summary} <span aria-hidden="true">↗</span></p>
+              <p>{project.summary} <ArrowIcon /></p>
             </Link>
           ))}
         </div>

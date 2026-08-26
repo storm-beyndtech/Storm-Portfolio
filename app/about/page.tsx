@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import ArrowIcon from "@/components/site/ArrowIcon"
 import { profile } from "@/content/profile"
 
 export const metadata: Metadata = {
@@ -34,8 +35,8 @@ export default function AboutPage() {
         <p className="eyebrow">Next step</p>
         <h2>Inspect the work, then inspect the résumé.</h2>
         <div className="inline-actions">
-          <Link className="primary-button" href="/work">Selected work <span aria-hidden="true">↗</span></Link>
-          <a className="secondary-button" href={profile.resume} target="_blank" rel="noreferrer">Résumé <span aria-hidden="true">↗</span></a>
+          <Link className="primary-button" href="/work">Selected work <ArrowIcon /></Link>
+          <a className="secondary-button" href={profile.resume} target="_blank" rel="noreferrer">Résumé <ArrowIcon /></a>
           <Link className="quiet-link" href="/contact?intent=role">Contact Victor</Link>
         </div>
       </section>

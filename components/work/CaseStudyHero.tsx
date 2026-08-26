@@ -1,4 +1,5 @@
 import Link from "next/link"
+import ArrowIcon from "@/components/site/ArrowIcon"
 
 type CaseStudyHeroProps = {
   index: string
@@ -41,7 +42,7 @@ export default function CaseStudyHero({
         <div>
           <p>{summary}</p>
           <p className="ownership-line"><strong>Ownership</strong>{ownership}</p>
-          {liveUrl ? <a className="text-link" href={liveUrl} target="_blank" rel="noreferrer">{liveLabel} <span aria-hidden="true">↗</span></a> : null}
+          {liveUrl ? <a className="text-link" href={liveUrl} target="_blank" rel="noreferrer">{liveLabel} <ArrowIcon /></a> : null}
         </div>
       </div>
     </header>

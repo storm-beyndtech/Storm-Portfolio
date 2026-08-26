@@ -125,6 +125,14 @@ button {
   font: inherit;
 }
 
+.action-icon {
+  width: 1em;
+  height: 1em;
+  flex: 0 0 auto;
+  stroke-width: 1.8;
+  vertical-align: -0.12em;
+}
+
 button:focus-visible,
 a:focus-visible,
 summary:focus-visible,
@@ -616,6 +624,11 @@ ol {
   font-size: 1rem;
 }
 
+.hero-carousel-slide > a .action-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
 .hero-carousel-controls {
   display: grid;
   padding: 0 0.85rem 0.8rem;
@@ -1007,6 +1020,13 @@ ol {
 .range-list strong {
   font-size: 1rem;
   font-weight: 550;
+}
+
+.range-list small,
+.elsewhere-channels small {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .contact-section {
@@ -2281,6 +2301,10 @@ ol {
 }
 
 .state-flow i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
   color: var(--text-tertiary);
   font-family: var(--font-mono), monospace;
   font-size: 0.56rem;
@@ -2369,6 +2393,11 @@ ol {
   transition: color 100ms ease-out;
 }
 
+.case-study-next .action-icon {
+  width: 0.72em;
+  height: 0.72em;
+}
+
 @media (hover: hover) {
   .case-study-next a:hover {
     color: var(--accent-hover);
@@ -2411,6 +2440,7 @@ ol {
   }
 
   .state-flow i {
+    justify-content: flex-start;
     text-align: left;
   }
 
@@ -2453,7 +2483,15 @@ ol {
   }
 
   .menu-glyph {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1rem;
+  }
+
+  .menu-glyph svg {
+    width: 1rem;
+    height: 1rem;
   }
 
   .mobile-menu {
@@ -2645,6 +2683,15 @@ ol {
 
   .state-flow > div {
     grid-template-columns: 1fr;
+  }
+
+  .state-flow i {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .state-flow i .action-icon {
+    transform: rotate(90deg);
   }
 
   .elsewhere-channels,
