@@ -22,7 +22,7 @@ The active public experience does not load Three.js or Framer Motion. Those pack
 - `/about` professional context
 - `/contact` context-aware contact form
 - `/elsewhere` writing, music, and visual work
-- `/Victor_Nwachukwu_CV_Senior.pdf` direct résumé asset
+- `/Victor_Nwachukwu_Software_Engineer.pdf` direct résumé asset
 
 Legacy `/case-studies/*` routes redirect to the current canonical locations.
 
@@ -85,7 +85,7 @@ The contact API requires SMTP credentials and never ships a password fallback. A
 ## Content rules
 
 - Do not invent traction, throughput, employers, customers, or testimonials.
-- Keep RugBurn scoring policy, thresholds, and calibration internals private.
+- Keep Rugburn scoring policy, thresholds, and calibration internals private.
 - Label VŒID implementation, mock state, and planned direction separately.
 - Use the local Micro-Systems repository as the source of truth for Nakupenda.
 - Treat screenshots as evidence of a decision, not as the case study itself.

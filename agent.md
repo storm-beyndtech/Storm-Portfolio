@@ -26,11 +26,11 @@ The visual direction is restrained, editorial, technical, and slightly uneasy. D
 
 ## Product truth
 
-- RugBurn source: `../RUGBURN` (read-only reference)
+- Rugburn source: `../RUGBURN` (read-only reference)
 - VŒID source: `../VOID` (read-only reference)
 - Nakupenda source: `../Micro-Systems` (read-only reference)
 
-Re-check these repositories before changing product claims. Never expose proprietary RugBurn scoring, policy, calibration thresholds, or private operational data.
+Re-check these repositories before changing product claims. Never expose proprietary Rugburn scoring, policy, calibration thresholds, or private operational data.
 
 ## Public identity
 

@@ -19,8 +19,8 @@ export const flagshipProjects: readonly Project[] = [
   {
     id: "rugburn",
     index: "01",
-    name: "RugBurn",
-    displayName: "RugBurn",
+    name: "Rugburn",
+    displayName: "Rugburn",
     category: "Behavioral / forensic intelligence",
     status: "Live product",
     href: "/work/rugburn",

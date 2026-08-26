@@ -1,10 +1,10 @@
-# RugBurn Case Study
+# Rugburn Case Study
 
-## RugBurn: Solana Token-Risk Intelligence for Traders, Builders, and Agentic Workflows
+## Rugburn: Solana Token-Risk Intelligence for Traders, Builders, and Agentic Workflows
 
-RugBurn is a Solana-native risk intelligence product that helps traders, communities, developers, and future VASP operators screen token risk before they act. The system turns fragmented market and on-chain signals into an explainable report: safety score, risk level, contract checks, holder concentration, liquidity, deployer evidence, market pulse, maturity, metadata, hard caps, and recommended action.
+Rugburn is a Solana-native risk intelligence product that helps traders, communities, developers, and future VASP operators screen token risk before they act. The system turns fragmented market and on-chain signals into an explainable report: safety score, risk level, contract checks, holder concentration, liquidity, deployer evidence, market pulse, maturity, metadata, hard caps, and recommended action.
 
-I built RugBurn as a practical answer to a real workflow problem: new Solana tokens move faster than most people can investigate them, and agentic trading tools are beginning to automate decisions without a reliable risk gate.
+I built Rugburn as a practical answer to a real workflow problem: new Solana tokens move faster than most people can investigate them, and agentic trading tools are beginning to automate decisions without a reliable risk gate.
 
 ## My Role
 
@@ -35,7 +35,7 @@ The core problem was not “make another scanner.” It was:
 
 ## Constraints
 
-RugBurn had several hard constraints:
+Rugburn had several hard constraints:
 
 - New-token data is incomplete by nature.
 - Provider credits can be burned quickly by aggressive transaction-history calls.
@@ -46,7 +46,7 @@ RugBurn had several hard constraints:
 
 ## Solution
 
-RugBurn uses an evidence-first scan report instead of a naked score.
+Rugburn uses an evidence-first scan report instead of a naked score.
 
 Each token report includes:
 
@@ -76,7 +76,7 @@ The current architecture is intentionally pragmatic.
 Flow:
 
 1. User, bot, API client, or MCP client submits a Solana token mint.
-2. RugBurn checks authentication, rate limits, subscription tier, and usage counters.
+2. Rugburn checks authentication, rate limits, subscription tier, and usage counters.
 3. The Go worker gathers token evidence from Solana data providers and market data sources.
 4. The scoring layer produces facets, risk alerts, hard caps, confidence notes, and final score.
 5. Results are stored in Supabase for dashboard reads, cached API reads, and calibration review.
@@ -103,7 +103,7 @@ The scan page explains why a token received a score. This matters because users 
 
 ### Hard Caps Beat False Confidence
 
-If the largest holder owns most of the supply or the market is too immature, RugBurn can cap the final score even when some facets look clean. This avoids the product giving a high score to a token that is structurally fragile.
+If the largest holder owns most of the supply or the market is too immature, Rugburn can cap the final score even when some facets look clean. This avoids the product giving a high score to a token that is structurally fragile.
 
 ### Calibration Is Treated Honestly
 
@@ -111,7 +111,7 @@ A recent calibration snapshot showed high overall accuracy, but weak precision a
 
 ### Provider Cost Is Product Design
 
-Behavioral analysis can burn provider credits if every scan aggressively pulls transaction history. RugBurn moved toward a controlled model:
+Behavioral analysis can burn provider credits if every scan aggressively pulls transaction history. Rugburn moved toward a controlled model:
 
 - Use Birdeye for enriched market and token data where possible.
 - Use Helius where RPC/on-chain evidence is actually needed.
@@ -157,7 +157,7 @@ Recent calibration snapshot:
 - Safe tokens: 161.
 - Current weakness: failed-token separation is still poor, so precision/recall need improvement before public rug-detection claims become strong.
 
-This shaped the product messaging. RugBurn should not claim “we predict every rug.” It should claim “we expose token-risk evidence before you, your group, or your agent acts.”
+This shaped the product messaging. Rugburn should not claim “we predict every rug.” It should claim “we expose token-risk evidence before you, your group, or your agent acts.”
 
 ## What I Would Improve Next
 
@@ -174,7 +174,7 @@ The next product improvements are clear:
 
 ## Portfolio Summary
 
-RugBurn demonstrates my ability to build a full-stack crypto product that combines product strategy, backend systems, data pipelines, frontend UX, API design, community workflows, pricing, abuse protection, and honest model evaluation.
+Rugburn demonstrates my ability to build a full-stack crypto product that combines product strategy, backend systems, data pipelines, frontend UX, API design, community workflows, pricing, abuse protection, and honest model evaluation.
 
 The strongest part of the project is not only the scanner. It is the operating system around the scanner: evidence collection, quota control, admin operations, API access, agent compatibility, and a marketing strategy aimed at real users who can provide feedback.
 
@@ -190,4 +190,3 @@ Use these screenshots when publishing the case study:
 - API response JSON.
 - Calibration dashboard showing accuracy and precision/recall caveat.
 - Birdeye build-in-public post or motion graphic.
-

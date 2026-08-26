@@ -8,11 +8,11 @@ import SystemDiagram from "@/components/work/SystemDiagram"
 import SystemNote from "@/components/work/SystemNote"
 
 export const metadata: Metadata = {
-  title: "RugBurn case study",
-  description: "How RugBurn evolved from structural token checks into behavioral and forensic risk infrastructure for Solana.",
+  title: "Rugburn case study",
+  description: "How Rugburn evolved from structural token checks into behavioral and forensic risk infrastructure for Solana.",
   alternates: { canonical: "/work/rugburn" },
   openGraph: {
-    title: "RugBurn · Behavioral risk infrastructure",
+    title: "Rugburn · Behavioral risk infrastructure",
     description: "Attribution, evidence, and uncertainty in a production forensic intelligence system.",
   },
 }
@@ -26,16 +26,16 @@ const architecture = [
   { label: "Surfaces", detail: "Reports, alerts, agents, and public records" },
 ] as const
 
-export default function RugBurnCaseStudy() {
+export default function RugburnCaseStudy() {
   return (
     <main id="main-content" className="case-study-page page-shell">
       <CaseStudyHero
         index="01"
         category="Behavioral / forensic intelligence"
         status="Live product"
-        title="RugBurn"
+        title="Rugburn"
         headline="Disposable addresses and tokens can change. Operator behavior leaves patterns."
-        summary="RugBurn is risk infrastructure for inspecting token structure, operator relationships, funding topology, holder concentration, liquidity movement, and historical outcomes before a person or autonomous system acts."
+        summary="Rugburn is risk infrastructure for inspecting token structure, operator relationships, funding topology, holder concentration, liquidity movement, and historical outcomes before a person or autonomous system acts."
         ownership="Solo product direction, architecture, Go worker, frontend, data systems, risk doctrine, API/MCP, bot surfaces, and operations."
         liveUrl="https://rugburn.io"
       />
@@ -53,7 +53,7 @@ export default function RugBurnCaseStudy() {
           <p>Calibration showed the limitation. Overall accuracy could look respectable while failed-token separation remained weak. A clean score was not the same thing as a reliable account of the actor behind the launch.</p>
         </div>
         <SystemNote code="SYS-01" title="A model can be accurate and still miss the event that matters.">
-          <p>Class imbalance can make aggregate accuracy flattering. RugBurn treats calibration as a reason to narrow claims, inspect failure classes, and keep evidence visible rather than marketing a perfect predictor.</p>
+          <p>Class imbalance can make aggregate accuracy flattering. Rugburn treats calibration as a reason to narrow claims, inspect failure classes, and keep evidence visible rather than marketing a perfect predictor.</p>
         </SystemNote>
       </CaseStudySection>
 
@@ -130,7 +130,7 @@ export default function RugBurnCaseStudy() {
 
       <CaseStudySection index="06" title="The interface uses contrast as an information budget." eyebrow="Design system">
         <div className="prose-grid">
-          <p>RugBurn’s current design system separates recessed instrument panels from raised objects, quiet chrome from semantic status, and known values from degraded or unassessed data.</p>
+          <p>Rugburn’s current design system separates recessed instrument panels from raised objects, quiet chrome from semantic status, and known values from degraded or unassessed data.</p>
           <p>Risk color is reserved for risk. Unknown has its own semantics. A decorative accent cannot borrow the same visual language as a critical finding without weakening the whole forensic hierarchy.</p>
         </div>
         <SystemNote code="DS-03" title="Semantic status cannot become decoration.">

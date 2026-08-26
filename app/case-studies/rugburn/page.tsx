@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation"
 
-export default function LegacyRugBurnRoute() {
+export default function LegacyRugburnRoute() {
   redirect("/work/rugburn")
 }

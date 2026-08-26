@@ -6,7 +6,7 @@ export const profile = {
   description:
     "I work across backend infrastructure, behavioral intelligence, financial systems, and product UX, turning noisy data, constraints, and failure modes into decisions people can act on.",
   availability: "Available for select remote engineering and product systems roles",
-  location: "Lagos, Nigeria · Remote / global",
+  location: "Port Harcourt, Nigeria · Remote / global",
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "storm@beyndtech.com",
   resume: "/Victor_Nwachukwu_Software_Engineer.pdf",
   links: {

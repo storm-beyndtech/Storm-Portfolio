@@ -41,7 +41,7 @@ export default function HeroPanel() {
         />
         <figcaption>
           <span>{profile.name}</span>
-          <span>Lagos · Remote</span>
+          <span>Port Harcourt · Remote</span>
         </figcaption>
       </figure>
 
