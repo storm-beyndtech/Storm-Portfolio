@@ -42,14 +42,14 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  colorScheme: "dark light",
+  colorScheme: "light dark",
   themeColor: [
     { media: "(prefers-color-scheme: dark)", color: "#171513" },
     { media: "(prefers-color-scheme: light)", color: "#eee9df" },
   ],
 }
 
-const themeScript = `(function(){try{var saved=localStorage.getItem('storm-theme');var systemDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;var theme=saved==='light'||saved==='dark'?saved:(systemDark?'dark':'light');document.documentElement.dataset.theme=theme;document.documentElement.style.colorScheme=theme;}catch(_){document.documentElement.dataset.theme='light';document.documentElement.style.colorScheme='light';}})();`
+const themeScript = `(function(){try{var saved=localStorage.getItem("storm-theme");var theme=saved==="dark"?"dark":"light";document.documentElement.dataset.theme=theme;document.documentElement.style.colorScheme=theme;}catch(_){document.documentElement.dataset.theme="light";document.documentElement.style.colorScheme="light";}})();`
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const personJsonLd = {
