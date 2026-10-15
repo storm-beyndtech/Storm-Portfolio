@@ -17,8 +17,18 @@ export type Project = {
 
 export const flagshipProjects: readonly Project[] = [
   {
+    id: "seametry", index: "01", name: "Seametry", displayName: "Seametry",
+    category: "Onchain ETF-style market infrastructure", status: "Mainnet allocations · Devnet Hall",
+    href: "/work/seametry", liveUrl: "https://seametry.xyz", liveLabel: "Explore Seametry",
+    problem: "Tokenized equities arrive through different issuers, permissions, and execution conditions; buying several tokens is not an ETF creation/redemption mechanism.",
+    thesis: "An open, fixed-formula creation and redemption mechanism for tokenized-equity baskets, paired with issuer-authority evidence and executable allocation workflows.",
+    ownership: "Solo founder · product direction, Solana/Anchor protocol, Go evidence and policy core, Next.js interface, integration and validation.",
+    proof: ["Hall deployed on Solana devnet with transaction-backed freeze and redemption scenarios", "Mainnet direct-wallet Allocations routed through Jupiter", "Token-2022 issuer-authority decoding, admission policy and cross-runtime conformance tests"],
+    technologies: ["Rust", "Anchor", "Go", "Solana", "Token-2022", "Next.js", "TypeScript"],
+  },
+  {
     id: "rugburn",
-    index: "01",
+    index: "02",
     name: "Rugburn",
     displayName: "Rugburn",
     category: "Behavioral / forensic intelligence",
@@ -40,7 +50,7 @@ export const flagshipProjects: readonly Project[] = [
   },
   {
     id: "void",
-    index: "02",
+    index: "03",
     name: "VOID",
     displayName: "VŒID",
     category: "Financial decision infrastructure",
@@ -56,7 +66,7 @@ export const flagshipProjects: readonly Project[] = [
   },
   {
     id: "nakupenda",
-    index: "03",
+    index: "04",
     name: "Nakupenda",
     displayName: "Nakupenda",
     category: "Social product systems / product design",
