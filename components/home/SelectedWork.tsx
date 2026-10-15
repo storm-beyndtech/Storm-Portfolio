@@ -7,10 +7,10 @@ export default function SelectedWork() {
     <section className="section-shell selected-work" id="work" aria-labelledby="selected-work-title">
       <div className="section-heading">
         <div>
-          <p className="eyebrow">Selected systems / 03</p>
+          <p className="eyebrow">Selected systems / 04</p>
           <h2 id="selected-work-title">Proof through systems.</h2>
         </div>
-        <p>Three projects. Three forms of uncertainty: financial behavior, route judgment, and human attention.</p>
+        <p>Four systems spanning onchain market infrastructure, forensic intelligence, financial routing, and social product design.</p>
       </div>
 
       <div className="project-list">
