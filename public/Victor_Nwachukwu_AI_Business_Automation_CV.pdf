@@ -1,0 +1,98 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 4201 >>
+stream
+BT /F2 18 Tf 42 789 Td (VICTOR NWACHUKWU) Tj ET
+BT /F1 9.4 Tf 42 770 Td (Software Engineer | AI, Data & Business Automation) Tj ET
+BT /F1 9.4 Tf 42 756 Td (Nigeria | storm@beyndtech.com | +234 808 694 1101) Tj ET
+BT /F1 9.4 Tf 42 742 Td (storm.beyndtech.com | github.com/storm-beyndtech) Tj ET
+BT /F1 9.4 Tf 42 728 Td () Tj ET
+BT /F2 10.5 Tf 42 714 Td (PROFILE) Tj ET
+BT /F1 9.4 Tf 42 695 Td (Software engineer experienced in backend systems, data processing, API integrations and) Tj ET
+BT /F1 9.4 Tf 42 681 Td (operational software. Builds reliable applications for complex business workflows, with) Tj ET
+BT /F1 9.4 Tf 42 667 Td (experience in risk analysis, transaction validation, real-time systems and product delivery.) Tj ET
+BT /F1 9.4 Tf 42 653 Td () Tj ET
+BT /F2 10.5 Tf 42 639 Td (TECHNICAL SKILLS) Tj ET
+BT /F1 9.4 Tf 42 620 Td (Languages & data: Go, TypeScript, JavaScript, SQL, PostgreSQL, MongoDB) Tj ET
+BT /F1 9.4 Tf 42 606 Td (Backend: Node.js, NestJS, Express, REST APIs, WebSockets, data pipelines) Tj ET
+BT /F1 9.4 Tf 42 592 Td (Product: React, Next.js, Tailwind CSS, responsive UX, Docker, CI/CD, testing) Tj ET
+BT /F1 9.4 Tf 42 578 Td (Automation & analysis: API workflows, data validation, transaction analysis, MCP) Tj ET
+BT /F1 9.4 Tf 42 564 Td () Tj ET
+BT /F2 10.5 Tf 42 550 Td (PROFESSIONAL EXPERIENCE) Tj ET
+BT /F2 10.5 Tf 42 531 Td (Founder & Lead Engineer | RugBurn \(Beyndtech Arc Ltd\) | 2025-Present) Tj ET
+BT /F1 9.4 Tf 42 512 Td (- Built and operate a production risk-intelligence platform with Go, PostgreSQL,) Tj ET
+BT /F1 9.4 Tf 42 498 Td (  Next.js, APIs, MCP tooling and messaging bots.) Tj ET
+BT /F1 9.4 Tf 42 484 Td (- Processed 32,000+ forensic scans; built pipelines to examine transaction patterns,) Tj ET
+BT /F1 9.4 Tf 42 470 Td (  funding relationships and behavioral anomalies across noisy datasets.) Tj ET
+BT /F1 9.4 Tf 42 456 Td (- Revised risk methodology after calibration exposed limitations in an earlier model.) Tj ET
+BT /F1 9.4 Tf 42 442 Td (- Designed inspectable evidence records and investigation workflows.) Tj ET
+BT /F1 9.4 Tf 42 428 Td () Tj ET
+BT /F2 10.5 Tf 42 414 Td (Founding Product Lead / Product Engineer | Nakupenda | Dec 2025-Present) Tj ET
+BT /F1 9.4 Tf 42 395 Td (- Lead product and frontend systems for a public-beta social platform, including) Tj ET
+BT /F1 9.4 Tf 42 381 Td (  messaging, live rooms, publishing, governance and monetization workflows.) Tj ET
+BT /F1 9.4 Tf 42 367 Td (- Build responsive Next.js/React interfaces with shared design-system constraints.) Tj ET
+BT /F1 9.4 Tf 42 353 Td () Tj ET
+BT /F2 10.5 Tf 42 339 Td (Technical Instructor & Software Engineer | Pearlcity Hub | 2024-2025) Tj ET
+BT /F1 9.4 Tf 42 320 Td (- Developed web applications with TypeScript, React and Node.js; taught full-stack) Tj ET
+BT /F1 9.4 Tf 42 306 Td (  engineering through deployable, end-to-end projects.) Tj ET
+BT /F1 9.4 Tf 42 292 Td () Tj ET
+BT /F2 10.5 Tf 42 278 Td (Software Engineer | Spyder Dev \(Freelance\) | 2021-2023) Tj ET
+BT /F1 9.4 Tf 42 259 Td (- Delivered frontend and backend features for client software, primarily a healthcare) Tj ET
+BT /F1 9.4 Tf 42 245 Td (  platform, on TypeScript-based stacks.) Tj ET
+BT /F1 9.4 Tf 42 231 Td () Tj ET
+BT /F2 10.5 Tf 42 217 Td (OPEN SOURCE & ECOSYSTEM) Tj ET
+BT /F1 9.4 Tf 42 198 Td (- Merged Stellar ecosystem backend work involving transaction idempotency and SEP-6) Tj ET
+BT /F1 9.4 Tf 42 184 Td (  anchor-response validation/reconciliation; merged real-time escrow event infrastructure) Tj ET
+BT /F1 9.4 Tf 42 170 Td (  to Trustless-OSS.) Tj ET
+BT /F1 9.4 Tf 42 156 Td (- Built an open-source Solana risk and compliance skill with reproducible workflows) Tj ET
+BT /F1 9.4 Tf 42 142 Td (  and QuickNode x402 integration; received QuickNode startup credits.) Tj ET
+BT /F1 9.4 Tf 42 128 Td (- Superteam Agentic Grant recipient for Augur, a pre-outcome verification layer.) Tj ET
+BT /F1 9.4 Tf 42 114 Td (- Twice placed fourth in the BirdEye On-Chain Intelligence Hackathon.) Tj ET
+BT /F1 9.4 Tf 42 100 Td (- Delivered a paid product-design engagement for Trustless Work via GrantFox.) Tj ET
+BT /F1 9.4 Tf 42 86 Td () Tj ET
+BT /F2 10.5 Tf 42 72 Td (SELECTED SYSTEMS) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 451 >>
+stream
+BT /F1 9.4 Tf 42 789 Td (Dash NG Shop - Multi-role commerce operations across inventory, orders and payments.) Tj ET
+BT /F1 9.4 Tf 42 775 Td (Rasman - Music commerce, playback, purchase and entitlement workflows.) Tj ET
+BT /F1 9.4 Tf 42 761 Td (SangoLabs - Nigerian-language data pipeline with agreement scoring; Go and Next.js.) Tj ET
+BT /F1 9.4 Tf 42 747 Td (Seametry - Solana devnet creation/redemption infrastructure and Go issuer evidence.) Tj ET
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000191 00000 n 
+0000000266 00000 n 
+0000000402 00000 n 
+0000004655 00000 n 
+0000004791 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+5293
+%%EOF
