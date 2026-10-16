@@ -122,8 +122,10 @@ export default function AtlasLabPage() {
       <section className={styles.field} aria-labelledby="atlas-title">
         <header className={styles.intro}>
           <p className={styles.identity}>{profile.name} · Software Engineer × Product Designer</p>
-          <h1 id="atlas-title">
-            Building <span className={styles.tension}>high-trust</span> systems under uncertainty.
+          <h1 id="atlas-title" aria-label="Building high-trust systems under uncertainty.">
+            <span className={styles.heroLine}>Building</span>
+            <span className={styles.heroTension}>high-trust systems</span>
+            <span className={styles.heroLine}>under uncertainty.</span>
           </h1>
           <p className={styles.introCopy}>
             Research, design and engineering for systems where authority, evidence or execution is incomplete.
