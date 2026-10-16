@@ -1,121 +1,129 @@
 .page {
-  --plate-line: color-mix(in srgb, var(--text-primary) 19%, transparent);
-  --plate-faint: color-mix(in srgb, var(--text-primary) 8%, transparent);
-  --plate-blue: color-mix(in srgb, var(--text-primary) 72%, #60798a 28%);
+  --plate-line: color-mix(in srgb, var(--text-primary) 18%, transparent);
+  --plate-faint: color-mix(in srgb, var(--text-primary) 7%, transparent);
+  --plate-blue: color-mix(in srgb, var(--text-primary) 68%, #60798a 32%);
   --plate-rust: var(--accent);
   min-height: 100vh;
-  overflow: clip;
+  overflow-x: clip;
   background: var(--surface-canvas);
   color: var(--text-primary);
 }
 
 .labNote {
-  width: min(100% - 2rem, 94rem);
+  width: min(100% - 2rem, 96rem);
   margin-inline: auto;
-  padding: 1rem 0 0;
+  padding-top: 1rem;
   color: var(--text-tertiary);
   font-family: var(--font-mono), monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.12em;
+  font-size: 0.56rem;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
 .field {
   position: relative;
   display: grid;
-  width: min(100% - 2rem, 94rem);
-  min-height: 76rem;
+  width: min(100% - 2rem, 96rem);
   margin-inline: auto;
-  padding: clamp(4rem, 7vw, 7rem) 0 clamp(8rem, 12vw, 13rem);
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: auto 7rem auto 10rem auto;
-  column-gap: clamp(0.75rem, 1.7vw, 1.7rem);
-}
-
-.field::before,
-.field::after {
-  position: absolute;
-  pointer-events: none;
-  content: "";
+  padding: clamp(4.5rem, 7vw, 7.5rem) 0 clamp(9rem, 14vw, 15rem);
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  grid-template-rows:
+    minmax(34rem, auto)
+    clamp(7rem, 9vw, 10rem)
+    minmax(31rem, auto)
+    clamp(9rem, 12vw, 14rem)
+    minmax(25rem, auto);
+  column-gap: clamp(0.65rem, 1.35vw, 1.35rem);
 }
 
 .field::before {
-  inset: 2rem 0 4rem;
+  position: absolute;
+  inset: 1rem 0 4rem;
+  pointer-events: none;
   background:
-    linear-gradient(90deg, transparent 49.94%, var(--plate-faint) 50%, transparent 50.06%);
+    linear-gradient(90deg, transparent 24.95%, var(--plate-faint) 25%, transparent 25.05%),
+    linear-gradient(90deg, transparent 62.45%, var(--plate-faint) 62.5%, transparent 62.55%);
+  content: "";
 }
 
-.field::after {
-  width: 42rem;
-  height: 42rem;
-  top: 20rem;
-  left: 39%;
-  border: 1px solid var(--plate-faint);
-  border-radius: 50%;
-  opacity: 0.65;
+.intro,
+.project,
+.lenses,
+.fieldFooter {
+  position: relative;
+  z-index: 2;
 }
 
 .intro {
-  position: relative;
-  z-index: 2;
-  grid-column: 1 / span 4;
+  grid-column: 1 / span 6;
   grid-row: 1;
   align-self: start;
-  padding-top: clamp(0rem, 2vw, 2rem);
+  padding-top: clamp(0rem, 1.6vw, 1.6rem);
 }
 
 .identity {
-  max-width: 30rem;
-  margin-bottom: clamp(3rem, 6vw, 6rem);
+  max-width: 34rem;
+  margin-bottom: clamp(3.8rem, 5vw, 5.5rem);
   color: var(--text-tertiary);
   font-family: var(--font-mono), monospace;
-  font-size: 0.64rem;
-  letter-spacing: 0.08em;
+  font-size: 0.62rem;
+  letter-spacing: 0.09em;
+  line-height: 1.5;
   text-transform: uppercase;
 }
 
 .intro h1 {
-  max-width: 8.6ch;
+  width: max-content;
+  max-width: none;
   font-family: var(--font-serif), serif;
-  font-size: clamp(3.7rem, 6.4vw, 7.2rem);
+  font-size: clamp(4rem, 5.2vw, 5.85rem);
   font-weight: 400;
-  letter-spacing: -0.065em;
-  line-height: 0.9;
-  text-wrap: balance;
+  letter-spacing: -0.064em;
+  line-height: 0.86;
 }
 
-.tension {
-  display: inline-block;
-  margin-inline: -0.02em 0.02em;
+.heroLine,
+.heroTension {
+  display: block;
+  white-space: nowrap;
+}
+
+.heroTension {
+  margin-block: 0.13em 0.09em;
   font-family: var(--font-sans), sans-serif;
-  font-size: 0.86em;
-  font-weight: 430;
-  letter-spacing: -0.085em;
-  transform: translateY(-0.045em);
+  font-size: 0.72em;
+  font-weight: 520;
+  letter-spacing: -0.075em;
+  line-height: 0.92;
+}
+
+.heroLine:last-child {
+  transform: translateX(0.16em);
 }
 
 .introCopy {
-  max-width: 34ch;
-  margin-top: 2.6rem;
+  max-width: 31ch;
+  margin-top: clamp(2.5rem, 3vw, 3.3rem);
   color: var(--text-secondary);
-  font-size: clamp(0.92rem, 1.2vw, 1.05rem);
-  line-height: 1.72;
+  font-size: clamp(0.92rem, 1vw, 1.03rem);
+  line-height: 1.78;
 }
 
 .introActions {
   display: flex;
   margin-top: 2rem;
-  gap: 1.6rem;
+  gap: 1.7rem;
 }
 
 .introActions a,
 .projectHeader a {
   position: relative;
+  width: fit-content;
   padding-bottom: 0.32rem;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   font-family: var(--font-mono), monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.06em;
+  font-size: 0.59rem;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
@@ -135,86 +143,88 @@
 @media (hover: hover) {
   .introActions a:hover::after,
   .projectHeader a:hover::after {
-    transform: scaleX(0.38);
+    transform: scaleX(0.35);
   }
 }
 
 .project {
-  position: relative;
-  z-index: 2;
   min-width: 0;
 }
 
 .projectHeader {
   display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr) auto;
+  grid-template-columns: 1.7rem minmax(0, 1fr) auto;
   align-items: start;
-  gap: 1rem;
+  gap: 0.9rem;
 }
 
 .projectHeader h2 {
-  margin-top: 0.2rem;
+  margin-top: 0.24rem;
   font-family: var(--font-serif), serif;
-  font-size: clamp(2rem, 3.15vw, 3.7rem);
+  font-size: clamp(2.1rem, 2.8vw, 3.45rem);
   font-weight: 400;
-  letter-spacing: -0.055em;
-  line-height: 0.95;
+  letter-spacing: -0.054em;
+  line-height: 0.94;
 }
 
 .projectHeader p:not(.kicker) {
-  max-width: 34ch;
+  max-width: 31ch;
   margin-top: 0.75rem;
   color: var(--text-secondary);
-  font-size: 0.82rem;
-  line-height: 1.55;
+  font-size: 0.79rem;
+  line-height: 1.6;
 }
 
 .projectHeader a {
   align-self: end;
-  margin-bottom: 0.1rem;
-  color: var(--text-secondary);
+  margin-bottom: 0.12rem;
 }
 
 .index,
 .kicker {
   color: var(--text-tertiary);
   font-family: var(--font-mono), monospace;
-  font-size: 0.57rem;
-  letter-spacing: 0.08em;
+  font-size: 0.55rem;
+  letter-spacing: 0.085em;
   text-transform: uppercase;
 }
 
 .seametry {
-  grid-column: 5 / -1;
+  grid-column: 6 / 16;
   grid-row: 1 / span 2;
-  padding-top: 0.5rem;
+  padding-top: 0.35rem;
 }
 
 .seametry .projectHeader {
-  width: min(100%, 48rem);
+  width: min(100%, 42rem);
+  margin-left: 4%;
+}
+
+.seametry .projectHeader h2 {
+  font-size: clamp(2.6rem, 3.35vw, 4.2rem);
 }
 
 .seametry .figure {
-  width: min(100%, 48rem);
-  margin: 2.8rem 0 0 auto;
+  width: min(100%, 52rem);
+  margin: clamp(2rem, 3vw, 3.6rem) 0 0 auto;
 }
 
 .externalAuthority {
   position: absolute;
-  top: 13rem;
-  right: -0.5rem;
+  top: 15.2rem;
+  right: -0.1rem;
   display: grid;
-  width: 11.5rem;
-  padding-left: 1.1rem;
+  width: 10.8rem;
+  padding-left: 1rem;
   border-left: 1px solid var(--plate-rust);
-  gap: 0.5rem;
+  gap: 0.48rem;
 }
 
 .externalAuthority strong,
 .externalAuthority span {
   font-family: var(--font-mono), monospace;
-  font-size: 0.56rem;
-  line-height: 1.55;
+  font-size: 0.54rem;
+  line-height: 1.58;
 }
 
 .externalAuthority strong {
@@ -229,99 +239,122 @@
 }
 
 .lenses {
-  position: relative;
-  z-index: 2;
-  grid-column: 1 / span 3;
-  grid-row: 3 / span 2;
+  grid-column: 1 / span 4;
+  grid-row: 3;
   display: grid;
   align-self: start;
-  gap: 2.6rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.3rem 2rem;
+  padding-top: 2.4rem;
 }
 
 .lenses > div {
   display: grid;
-  grid-template-columns: 2rem 1fr;
-  column-gap: 0.8rem;
+  grid-template-columns: 1.4rem 1fr;
+  column-gap: 0.65rem;
 }
 
 .lenses span {
   grid-row: 1 / span 2;
   color: var(--text-tertiary);
   font-family: var(--font-mono), monospace;
-  font-size: 0.55rem;
+  font-size: 0.52rem;
 }
 
 .lenses h2 {
   font-family: var(--font-serif), serif;
-  font-size: 1.28rem;
+  font-size: 1.16rem;
   font-weight: 400;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.018em;
+  line-height: 1;
 }
 
 .lenses p {
-  max-width: 23ch;
-  margin-top: 0.45rem;
+  max-width: 19ch;
+  margin-top: 0.5rem;
   color: var(--text-tertiary);
-  font-size: 0.72rem;
-  line-height: 1.55;
+  font-size: 0.68rem;
+  line-height: 1.58;
 }
 
 .rugburn {
-  grid-column: 3 / span 5;
+  grid-column: 4 / span 7;
   grid-row: 3;
-  margin-left: -1.5rem;
+  align-self: start;
+  margin-top: -1.5rem;
+}
+
+.rugburn .projectHeader {
+  width: min(100%, 29rem);
+}
+
+.rugburn .projectHeader a {
+  grid-column: 2;
+  justify-self: start;
+  margin-top: 0.6rem;
 }
 
 .rugburn .figure {
-  width: 115%;
-  margin: 2rem 0 -3rem -12%;
+  width: 112%;
+  margin: 2.6rem 0 -2rem -10%;
 }
 
 .void {
-  grid-column: 10 / -1;
+  grid-column: 12 / -1;
   grid-row: 3;
   align-self: center;
-  margin-top: 5rem;
+  margin-top: 5.5rem;
 }
 
 .void .projectHeader {
-  grid-template-columns: 2rem minmax(0, 1fr);
+  grid-template-columns: 1.7rem minmax(0, 1fr);
 }
 
 .void .projectHeader a {
   grid-column: 2;
   justify-self: start;
+  margin-top: 0.55rem;
 }
 
 .void .figure {
-  width: 124%;
-  margin: 2.8rem 0 0 -24%;
+  width: 118%;
+  margin: 3rem 0 0 -20%;
 }
 
 .nakupenda {
-  grid-column: 7 / span 5;
+  grid-column: 8 / span 7;
   grid-row: 5;
-  margin-top: -2.5rem;
+  align-self: start;
+}
+
+.nakupenda .projectHeader {
+  width: min(100%, 35rem);
+  margin-left: 7%;
 }
 
 .nakupenda .figure {
-  width: 116%;
-  margin: 2.5rem 0 0 -10%;
+  width: 112%;
+  margin: 3.2rem 0 0 -8%;
 }
 
 .fieldFooter {
-  grid-column: 1 / span 3;
+  grid-column: 1 / span 4;
   grid-row: 5;
   align-self: end;
-  display: grid;
-  padding-top: 4rem;
+  width: 78%;
+  padding-top: 3rem;
   border-top: 1px solid var(--plate-line);
   color: var(--text-tertiary);
   font-family: var(--font-mono), monospace;
-  font-size: 0.57rem;
-  letter-spacing: 0.08em;
-  line-height: 1.8;
+  font-size: 0.54rem;
+  letter-spacing: 0.09em;
+  line-height: 1.85;
   text-transform: uppercase;
+}
+
+.fieldFooter span,
+.fieldFooter strong {
+  display: block;
 }
 
 .fieldFooter strong {
@@ -476,171 +509,275 @@ path.guide {
   stroke: var(--text-secondary);
 }
 
-@media (max-width: 72rem) {
+/* Tablet is a new composition, not a shrunken desktop plate. */
+@media (max-width: 64rem) {
   .field {
-    min-height: auto;
-    grid-template-rows: auto;
-    row-gap: 8rem;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-rows:
+      auto
+      8rem
+      auto
+      9rem
+      auto
+      10rem
+      auto
+      10rem
+      auto;
+    column-gap: 1rem;
+  }
+
+  .field::before {
+    background:
+      linear-gradient(90deg, transparent 37.45%, var(--plate-faint) 37.5%, transparent 37.55%),
+      linear-gradient(90deg, transparent 74.95%, var(--plate-faint) 75%, transparent 75.05%);
   }
 
   .intro {
-    grid-column: 1 / span 5;
+    grid-column: 1 / span 6;
+    grid-row: 1;
+  }
+
+  .intro h1 {
+    font-size: clamp(4.15rem, 8.6vw, 5.6rem);
   }
 
   .seametry {
+    grid-column: 2 / -1;
+    grid-row: 3;
+    padding-top: 0;
+  }
+
+  .seametry .projectHeader {
+    margin-left: 0;
+  }
+
+  .seametry .figure {
+    width: min(100%, 49rem);
+  }
+
+  .externalAuthority {
+    top: 13.8rem;
+  }
+
+  .lenses {
+    grid-column: 1 / span 3;
+    grid-row: 5;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-top: 1rem;
+  }
+
+  .rugburn {
+    grid-column: 3 / span 5;
+    grid-row: 5;
+    margin-top: 0;
+  }
+
+  .rugburn .figure {
+    width: 110%;
+    margin-left: -8%;
+  }
+
+  .void {
     grid-column: 5 / -1;
+    grid-row: 7;
+    margin-top: 0;
+  }
+
+  .void .figure {
+    width: 112%;
+    margin-left: -14%;
+  }
+
+  .nakupenda {
+    grid-column: 1 / span 6;
+    grid-row: 9;
+  }
+
+  .nakupenda .projectHeader {
+    margin-left: 0;
+  }
+
+  .fieldFooter {
+    grid-column: 7 / -1;
+    grid-row: 9;
+    width: 100%;
+  }
+}
+
+/* Mobile is deliberately sequential. Relationships survive; desktop placement does not. */
+@media (max-width: 48rem) {
+  .labNote,
+  .field {
+    width: min(100% - 1.25rem, 96rem);
+  }
+
+  .field {
+    display: block;
+    padding-top: 3.75rem;
+    padding-bottom: 7rem;
+  }
+
+  .field::before {
+    display: none;
+  }
+
+  .intro {
+    padding-bottom: 9.5rem;
+  }
+
+  .identity {
+    max-width: 26rem;
+    margin-bottom: 3.4rem;
+    font-size: 0.57rem;
+  }
+
+  .intro h1 {
+    width: 100%;
+    font-size: clamp(3.45rem, 15.4vw, 5rem);
+    line-height: 0.88;
+  }
+
+  .heroLine,
+  .heroTension {
+    white-space: normal;
+  }
+
+  .heroTension {
+    width: fit-content;
+    max-width: 100%;
+    font-size: 0.69em;
+  }
+
+  .heroLine:last-child {
+    transform: none;
+  }
+
+  .introCopy {
+    max-width: 29ch;
+    margin-top: 2.4rem;
+  }
+
+  .project,
+  .lenses,
+  .fieldFooter {
+    width: 100%;
+    margin: 0;
+  }
+
+  .projectHeader {
+    grid-template-columns: 1.55rem minmax(0, 1fr);
+    gap: 0.65rem;
+  }
+
+  .projectHeader h2 {
+    font-size: clamp(2.45rem, 11.5vw, 3.8rem);
+  }
+
+  .projectHeader a {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 0.55rem;
+  }
+
+  .seametry {
+    padding-bottom: 12rem;
+  }
+
+  .seametry .projectHeader,
+  .rugburn .projectHeader,
+  .void .projectHeader,
+  .nakupenda .projectHeader {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .seametry .figure {
+    width: 106%;
+    max-width: none;
+    margin: 3.6rem 0 0 -3%;
   }
 
   .externalAuthority {
     position: relative;
     top: auto;
     right: auto;
-    width: min(100%, 22rem);
-    margin: -1rem 0 0 auto;
+    width: 62%;
+    margin: 1.4rem 4% 0 auto;
   }
 
   .lenses {
-    grid-column: 1 / span 3;
-    grid-row: 3;
-  }
-
-  .rugburn {
-    grid-column: 4 / span 6;
-    grid-row: 3;
-  }
-
-  .void {
-    grid-column: 9 / -1;
-    grid-row: 4;
-  }
-
-  .nakupenda {
-    grid-column: 4 / -1;
-    grid-row: 5;
-  }
-
-  .fieldFooter {
-    grid-column: 1 / span 3;
-    grid-row: 5;
-  }
-}
-
-@media (max-width: 48rem) {
-  .labNote,
-  .field {
-    width: min(100% - 1.25rem, 94rem);
-  }
-
-  .field {
-    display: block;
-    padding-top: 3.5rem;
-  }
-
-  .field::before,
-  .field::after {
-    display: none;
-  }
-
-  .intro {
-    padding: 0 0 9rem;
-  }
-
-  .identity {
-    margin-bottom: 3.5rem;
-  }
-
-  .intro h1 {
-    max-width: 9.2ch;
-    font-size: clamp(3.55rem, 17vw, 5.4rem);
-    line-height: 0.91;
-  }
-
-  .introCopy {
-    margin-top: 2.2rem;
-  }
-
-  .project {
-    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 1.6rem;
+    width: 88%;
+    margin: 0 0 12rem 7%;
     padding: 0;
   }
 
-  .project + .project {
-    margin-top: 9rem;
-  }
-
-  .projectHeader {
-    grid-template-columns: 1.7rem minmax(0, 1fr);
-  }
-
-  .projectHeader a {
-    grid-column: 2;
-    justify-self: start;
-    margin-top: 0.6rem;
-  }
-
-  .projectHeader h2 {
-    font-size: clamp(2.5rem, 12vw, 4rem);
-  }
-
-  .seametry {
-    padding-bottom: 11rem;
-  }
-
-  .seametry .figure,
-  .rugburn .figure,
-  .void .figure,
-  .nakupenda .figure {
-    width: 112%;
-    margin: 3rem 0 0 -6%;
-  }
-
-  .externalAuthority {
-    margin-top: 1.5rem;
-    margin-left: 16%;
-  }
-
-  .lenses {
-    margin: 0 0 11rem 12%;
-    gap: 2.8rem;
-  }
-
   .lenses > div {
-    grid-template-columns: 1.7rem 1fr;
+    grid-template-columns: 1.25rem 1fr;
+  }
+
+  .lenses p {
+    max-width: 17ch;
   }
 
   .rugburn {
-    padding-bottom: 12rem;
+    padding-bottom: 13rem;
   }
 
   .rugburn .figure {
-    margin-top: 4rem;
-    margin-bottom: 0;
+    width: 106%;
+    margin: 4rem 0 0 -5%;
   }
 
   .void {
     width: 82%;
     margin-left: 18%;
-    padding-bottom: 12rem;
+    padding-bottom: 13rem;
   }
 
   .void .figure {
-    width: 128%;
-    margin-left: -28%;
+    width: 116%;
+    margin: 3.4rem 0 0 -16%;
   }
 
   .nakupenda {
+    width: 94%;
     padding-bottom: 10rem;
   }
 
   .nakupenda .figure {
-    width: 125%;
-    margin-left: -12%;
+    width: 108%;
+    margin: 3.5rem 0 0 -4%;
   }
 
   .fieldFooter {
-    width: 55%;
-    margin-left: 6%;
-    padding-bottom: 4rem;
+    width: 58%;
+    margin-left: 4%;
+    padding-top: 2.5rem;
+  }
+}
+
+@media (max-width: 25rem) {
+  .intro h1 {
+    font-size: clamp(3.1rem, 15vw, 4rem);
+  }
+
+  .heroTension {
+    font-size: 0.66em;
+  }
+
+  .lenses {
+    width: 100%;
+    margin-left: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .void {
+    width: 90%;
+    margin-left: 10%;
   }
 }
 
